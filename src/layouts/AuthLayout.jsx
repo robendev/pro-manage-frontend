@@ -9,8 +9,8 @@ const AuthLayout = () => {
           <Logo />
         </div>
 
-        <form className="grid grid-cols-2 gap-1 lg:grid-cols-3">
-          <div className="col-start-1 lg:col-start-1">
+        <form className="grid grid-cols-2 gap-1 lg:grid-cols-3 p-0.5 max-w-[536px] h-full">
+          <div className="col-start-1 lg:col-start-1 w-full">
             <label htmlFor="email" className="sr-only">
               Email
             </label>
@@ -18,11 +18,11 @@ const AuthLayout = () => {
               type="text"
               id="email"
               placeholder="Email"
-              className="max-w-44 shadow-md rounded-lg py-0.5 pl-4 text-xs border border-gray-100"
+              className="shadow-md rounded-lg py-0.5 pl-4 text-xs border border-gray-100 w-full"
             />
           </div>
 
-          <div className="col-start-1 row-start-2 lg:row-start-1 lg:col-start-2">
+          <div className="col-start-1 row-start-2 lg:row-start-1 lg:col-start-2 w-full">
             <label htmlFor="password" className="sr-only">
               Contraseña
             </label>
@@ -30,12 +30,12 @@ const AuthLayout = () => {
               type="text"
               id="password"
               placeholder="Contraseña"
-              className="max-w-44 shadow-md rounded-lg py-0.5 pl-4 text-xs border border-gray-100"
+              className="shadow-md rounded-lg py-0.5 pl-4 text-xs border border-gray-100 w-full"
             />
           </div>
 
-          <div className="col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3">
-            <button className="max-w-44 shadow-md rounded-lg text-xs border border-gray-100 w-full h-full bg-gray-800 text-white">
+          <div className="max-w-44 col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3 w-full">
+            <button className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white">
               Iniciar Sesión
             </button>
           </div>

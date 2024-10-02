@@ -33,24 +33,22 @@ const WelcomeView = () => {
         <h2 className="font-semibold mb-2">¿Ya tienes una cuenta?</h2>
         <p>
           <i className="fas fa-sign-in-alt mr-2"></i>
-          <Link to="/login">Iniciar Sesión</Link>
+          <Link to="">Iniciar Sesión</Link>
         </p>
       </div>
       <div className="pb-4 pt-1 border-b-2 border-gray-100">
         <h2 className="font-semibold mb-2">¿Aún no tienes una cuenta?</h2>
         <p>
           <i className="fas fa-user-plus mr-2"></i>
-          <Link to="/register">Registrarse</Link>
+          <Link to="/auth/create-account">Registrarse</Link>
         </p>
       </div>
       <div className="py-4">
         <h2 className="font-semibold mb-2">Tutorial</h2>
         <p>
           <i className="fas fa-book mr-2"></i>
-          ¿Nuevo en la aplicación? <Link to="/tutorial">
-            Ver el tutorial
-          </Link>{" "}
-          para aprender cómo empezar.
+          ¿Nuevo en la aplicación? <Link to="">Ver el tutorial</Link> para
+          aprender cómo empezar.
         </p>
       </div>
     </div>
