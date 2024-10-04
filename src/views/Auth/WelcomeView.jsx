@@ -33,7 +33,7 @@ const WelcomeView = () => {
         <h2 className="font-semibold mb-2">¿Ya tienes una cuenta?</h2>
         <p>
           <i className="fas fa-sign-in-alt mr-2"></i>
-          <Link to="">Iniciar Sesión</Link>
+          <a href="#top">Iniciar Sesión</a>
         </p>
       </div>
       <div className="pb-4 pt-1 border-b-2 border-gray-100">

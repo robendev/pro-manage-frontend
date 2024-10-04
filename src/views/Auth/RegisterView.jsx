@@ -87,6 +87,7 @@ const RegisterView = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-[98%] max-w-96 mx-auto p-4 mb-4 space-y-4 shadow-md rounded-lg bg-gray-100"
+          noValidate
         >
           <h2 className="text-center font-bold">Registrarse</h2>
           <FormCreateAccount

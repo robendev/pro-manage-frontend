@@ -17,3 +17,18 @@ export const createAccount = async (formData) => {
     throw error; // Puedes lanzar el error nuevamente si necesitas manejarlo en otro lugar
   }
 };
+export const loginAccount = async ({ emailLogin, passwordLogin }) => {
+  try {
+    const response = await fetchWithInterceptors(
+      `${import.meta.env.VITE_BACKEND_URL}/auth/login-account`,
+      {
+        method: "POST",
+        body: JSON.stringify({ email: emailLogin, password: passwordLogin }),
+      },
+      false
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

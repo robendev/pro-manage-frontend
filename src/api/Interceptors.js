@@ -3,7 +3,7 @@ export const fetchWithInterceptors = async (
   options,
   includeAuth = true
 ) => {
-  const tokenJwt = null;
+  let tokenJwt = null;
 
   if (includeAuth) {
     tokenJwt = localStorage.getItem("tokenJwt");
