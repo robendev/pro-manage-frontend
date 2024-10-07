@@ -60,7 +60,7 @@ const AuthLayout = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-2 gap-1 lg:grid-cols-3 p-0.5 max-w-[536px] h-full"
+          className="grid grid-cols-2 gap-1 lg:grid-cols-3 max-w-[536px] h-full"
           noValidate
         >
           <div className="col-start-1 lg:col-start-1 w-full">
@@ -72,7 +72,7 @@ const AuthLayout = () => {
               id="emailLogin"
               name="emailLogin"
               placeholder={errors.emailLogin ? errors.emailLogin.message : "Email"}
-              className={`border shadow-md rounded-lg py-0.5 pl-4 text-xs w-full focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+              className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
               {...register("emailLogin", {
                 required: {
                   value: true,
@@ -91,7 +91,7 @@ const AuthLayout = () => {
               id="passwordLogin"
               name="passwordLogin"
               placeholder={errors.passwordLogin ? errors.passwordLogin.message : "Contraseña"}
-              className={`border shadow-md rounded-lg py-0.5 px-4 text-xs w-full focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+              className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
               {...register("passwordLogin", {
                 required: {
                   value: true,
@@ -104,7 +104,7 @@ const AuthLayout = () => {
           <div className="max-w-44 col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3 w-full">
             <button
               type="submit"
-              className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white"
+              className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white border border-gray-800"
             >
               Iniciar Sesión
             </button>

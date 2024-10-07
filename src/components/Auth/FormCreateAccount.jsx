@@ -15,7 +15,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="username"
             name="username"
             placeholder="Nombre de usuario"
-            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs"
+            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
             {...register("username", {
               required: {
                 value: true,
@@ -49,7 +49,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="email"
             name="email"
             placeholder="Email"
-            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs"
+            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
             {...register("email", {
               required: {
                 value: true,
@@ -78,7 +78,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="password"
             name="password"
             placeholder="Contraseña"
-            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs"
+            className="w-full pl-4 pr-6 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
             {...register("password", {
               required: {
                 value: true,
@@ -124,7 +124,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Confirmación de Contraseña"
-            className="w-full px-4 py-1 border shadow-md rounded-lg text-xs"
+            className="w-full pl-4 pr-6 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
             {...register("confirmPassword", {
               required: {
                 value: true,

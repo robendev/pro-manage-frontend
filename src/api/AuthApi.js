@@ -17,6 +17,18 @@ export const createAccount = async (formData) => {
     throw error; // Puedes lanzar el error nuevamente si necesitas manejarlo en otro lugar
   }
 };
+export const confirmAccount = async (otpToken6Digits) => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/confirm-account`, {
+      method: "POST",
+      body: JSON.stringify(otpToken6Digits)
+    },
+    false);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
 export const loginAccount = async ({ emailLogin, passwordLogin }) => {
   try {
     const response = await fetchWithInterceptors(
@@ -27,8 +39,66 @@ export const loginAccount = async ({ emailLogin, passwordLogin }) => {
       },
       false
     );
+    localStorage.setItem("tokenJwt", response.tokenJwt)
     return response;
   } catch (error) {
     throw error;
   }
 };
+export const requestNewOtpToken6Digits = async (email) => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/request-token`,
+    {
+      method: "POST",
+      body: JSON.stringify(email)
+    },
+    false
+  )
+  return response
+  } catch (error) {
+    throw error;
+  }
+}
+export const recoverAccount = async (email) => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/recover-account`,
+    {
+      method: "POST",
+      body: JSON.stringify(email)
+    },
+    false
+  )
+  return response
+  } catch (error) {
+    throw error;
+  }
+}
+export const validateOtpTokenForPasswordReset = async (otpToken6Digits) => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/validate-token`,
+    {
+      method: "POST",
+      body: JSON.stringify(otpToken6Digits)
+    },
+    false
+  )
+  return response
+  } catch (error) {
+    throw error;
+  }
+}
+export const resetPassword = async ({password, confirmPassword, otpToken6Digits}) => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/reset-password/${otpToken6Digits}`,
+    {
+      method: "POST",
+      body: JSON.stringify({password, confirmPassword})
+    },
+    false
+  )
+  console.log(response)
+  return response
+  } catch (error) {
+    throw error;
+  }
+}
