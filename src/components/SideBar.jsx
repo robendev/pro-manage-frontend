@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
-const SideBar = () => {
+const SideBar = ({ logout }) => {
     return (
         <header className='fixed top-1 left-1 h-screen w-20 p-2 flex flex-col justify-between bg-white shadow-md rounded-lg'>
-            <Link>
+            <Link to={"/"}>
                 <Logo />
             </Link>
 
@@ -19,7 +19,9 @@ const SideBar = () => {
 
             <SideBarIcon icon={<i class="fa-solid fa-gear"></i>} text='Configuración' />
 
-            <SideBarIcon icon={<i class="fa-solid fa-right-from-bracket"></i>} text='Cerrar Sesión' />
+            <button type='button' onClick={logout}>
+                <SideBarIcon icon={<i class="fa-solid fa-right-from-bracket"></i>} text='Cerrar Sesión' />
+            </button>
         </header>
     )
 }

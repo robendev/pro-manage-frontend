@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -6,11 +6,15 @@ import { useMutation } from "@tanstack/react-query";
 import { showToast } from "../utils/toast";
 import { loginAccount } from "../api/AuthApi";
 import Logo from "../components/Logo";
+import { useAuth } from "../hooks/useAuth";
 
 const AuthLayout = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  
+
+  const { isPending, isError, data, error, logout } = useAuth()
+  const [isLoggedIn, setIsLoggedIn] = useState(!!data);
+
   const {
     register,
     handleSubmit,
@@ -45,8 +49,16 @@ const AuthLayout = () => {
     reset()
   }, [reset])
 
-  useEffect(() => {resetForm()}, [location, resetForm])
+  useEffect(() => { resetForm() }, [location, resetForm])
 
+  useEffect(() => {
+    setIsLoggedIn(!!data);
+  }, [data]);
+
+  const handleLogout = () => {
+    logout();
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 px-4">
@@ -60,58 +72,72 @@ const AuthLayout = () => {
           </Link>
         </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-2 gap-1 lg:grid-cols-3 max-w-[536px] h-full"
-          noValidate
-        >
-          <div className="col-start-1 lg:col-start-1 w-full">
-            <label htmlFor="emailLogin" className="sr-only">
-              Email
-            </label>
-            <input
-              type="email"
-              id="emailLogin"
-              name="emailLogin"
-              placeholder={errors.emailLogin ? errors.emailLogin.message : "Email"}
-              className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
-              {...register("emailLogin", {
-                required: {
-                  value: true,
-                  message: "El email es obligatorio.",
-                },
-              })}
-            />
-          </div>
+        {isLoggedIn ? (
+          <div className="space-x-4 flex items-center">
+            <Link to={"/projects"} className="shadow-md rounded-lg border border-gray-800 px-4 py-1 bg-gray-800 text-white text-xs hover:text-white">
+              Ir a Proyectos
+            </Link>
 
-          <div className="col-start-1 row-start-2 lg:row-start-1 lg:col-start-2 w-full">
-            <label htmlFor="passwordLogin" className="sr-only">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              id="passwordLogin"
-              name="passwordLogin"
-              placeholder={errors.passwordLogin ? errors.passwordLogin.message : "Contraseña"}
-              className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
-              {...register("passwordLogin", {
-                required: {
-                  value: true,
-                  message: "La contraseña es obligatoria.",
-                },
-              })}
-            />
-          </div>
-
-          <div className="max-w-44 col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3 w-full">
-            <button
-              type="submit"
-              className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white border border-gray-800"
-            >
-              Iniciar Sesión
+            <button type='button' className="text-xl" onClick={handleLogout}>
+              <i className="fa-solid fa-right-from-bracket"></i>
             </button>
           </div>
-        </form>
+        ) : (
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid grid-cols-2 gap-1 lg:grid-cols-3 max-w-[536px] h-full"
+            noValidate
+          >
+            <div className="col-start-1 lg:col-start-1 w-full">
+              <label htmlFor="emailLogin" className="sr-only">
+                Email
+              </label>
+              <input
+                type="email"
+                id="emailLogin"
+                name="emailLogin"
+                placeholder={errors.emailLogin ? errors.emailLogin.message : "Email"}
+                className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+                {...register("emailLogin", {
+                  required: {
+                    value: true,
+                    message: "El email es obligatorio.",
+                  },
+                })}
+              />
+            </div>
+
+            <div className="col-start-1 row-start-2 lg:row-start-1 lg:col-start-2 w-full">
+              <label htmlFor="passwordLogin" className="sr-only">
+                Contraseña
+              </label>
+              <input
+                type="password"
+                id="passwordLogin"
+                name="passwordLogin"
+                placeholder={errors.passwordLogin ? errors.passwordLogin.message : "Contraseña"}
+                className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+                {...register("passwordLogin", {
+                  required: {
+                    value: true,
+                    message: "La contraseña es obligatoria.",
+                  },
+                })}
+              />
+            </div>
+
+            <div className="max-w-44 col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3 w-full">
+              <button
+                type="submit"
+                className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white border border-gray-800"
+              >
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
+        )}
+
+
       </header>
 
       <main className="container mx-auto flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-lg">

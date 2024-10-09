@@ -3,10 +3,10 @@ import { useAuth } from "../hooks/useAuth"
 import SideBar from "../components/SideBar"
 
 const AppLayout = () => {
-  const { isPending, isError, data, error } = useAuth()
+  const { isPending, isError, data, error, logout } = useAuth()
   return (
     <div className="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 px-4 pt-1">
-      <SideBar />
+      <SideBar logout={ logout } />
 
       <main className="ml-20 flex-1 flex pb-3">
         {
