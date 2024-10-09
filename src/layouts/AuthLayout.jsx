@@ -1,14 +1,15 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { showToast } from "../utils/toast";
 import { loginAccount } from "../api/AuthApi";
 import Logo from "../components/Logo";
-import { useCallback, useEffect } from "react";
 
 const AuthLayout = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   
   const {
     register,
@@ -32,6 +33,7 @@ const AuthLayout = () => {
     onSuccess: (response) => {
       showToast("success", response.message);
       reset();
+      navigate("/projects")
     },
   });
 

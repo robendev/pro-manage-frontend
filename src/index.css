@@ -48,3 +48,34 @@ a {
 a:hover {
   color: #0056b3;
 }
+
+@layer components {
+  .sidebar-icon {
+    @apply relative flex justify-center items-center 
+            w-10 h-10 mx-auto cursor-pointer my-2
+            bg-gradient-to-tr from-gray-600 to-gray-800 text-white shadow-md rounded-lg
+            hover:rounded-3xl
+            transition-all duration-300 ease-linear;
+  }
+
+  .sidebar-tooltip {
+    @apply absolute w-auto py-0.5 px-4 m-2 min-w-max left-10
+           shadow-md rounded-lg
+           bg-gradient-to-tr from-gray-600 to-gray-800 text-white
+           text-xs
+           transition-all duration-300 scale-0 origin-left;
+  }
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #1f2937;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

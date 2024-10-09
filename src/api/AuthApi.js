@@ -96,7 +96,19 @@ export const resetPassword = async ({password, confirmPassword, otpToken6Digits}
     },
     false
   )
-  console.log(response)
+  return response
+  } catch (error) {
+    throw error;
+  }
+}
+export const validateUser = async () => {
+  try {
+    const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/auth/validate-user`,
+    {
+      method: "GET",
+    },
+    true
+  )
   return response
   } catch (error) {
     throw error;

@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "../../api/AuthApi.js";
 import { showToast } from "../../utils/toast.js";
 import FormCreateAccount from "../../components/Auth/FormCreateAccount.jsx";
 
 const RegisterView = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -29,6 +32,7 @@ const RegisterView = () => {
     onSuccess: (response) => {
       showToast("success", response.message);
       reset();
+      navigate("/")
     },
   });
 
