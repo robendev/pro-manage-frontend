@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const ProjectCard = ({project}) => {
     return (
-        <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-96
+        <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-80
                         hover:from-white hover:to-gray-100">
             <div className="space-y-2">
                 <div className="flex justify-between items-center">

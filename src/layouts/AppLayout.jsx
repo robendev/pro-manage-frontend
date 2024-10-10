@@ -5,7 +5,10 @@ import SideBar from "../components/SideBar"
 const AppLayout = () => {
   const { isPending, isError, data, error, logout } = useAuth()
   return (
-    <div className="flex flex-col justify-between min-h-screen text-gray-800 px-4 py-4 ml-20">
+    <div className="flex flex-col justify-between
+                    min-h-screen 
+                    text-gray-800
+                    px-4 py-4 ml-14">
       <SideBar logout={ logout } />
 
       <main className="container mx-auto flex-1 flex">
