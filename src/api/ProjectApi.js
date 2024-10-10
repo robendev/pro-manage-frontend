@@ -13,3 +13,16 @@ export const getAllProjects = async () => {
         throw error;
     }
 }
+export const getProjectById = async (projectId) => {
+    try {
+        const response = await fetchWithInterceptors(`${import.meta.env.VITE_BACKEND_URL}/projects/${projectId}`,
+            {
+                method: "GET"
+            },
+            true
+        )
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}

@@ -3,24 +3,27 @@ import Logo from './Logo'
 
 const SideBar = ({ logout }) => {
     return (
-        <header className='fixed top-1 left-1 h-screen w-20 p-2 flex flex-col justify-between bg-white shadow-md rounded-lg'>
+        <header className='fixed top-0 left-0 flex flex-col justify-between
+                           bg-gradient-to-tr from-gray-200 to-gray-300
+                           shadow-md rounded-lg
+                           h-full w-20  '>
             <Link to={"/"}>
                 <Logo />
             </Link>
 
             <div className='flex-1 py-2 space-y-4'>
-                <SideBarIcon icon={<i class="fa-solid fa-user"></i>} text='Perfil' />
+                <SideBarIcon icon={<i className="fa-solid fa-user"></i>} text='Perfil' />
 
-                <SideBarIcon icon={<i class="fa-solid fa-diagram-project"></i>} text='Proyectos' />
+                <SideBarIcon icon={<i className="fa-solid fa-diagram-project"></i>} text='Proyectos' />
 
-                <SideBarIcon icon={<i class="fa-solid fa-list-check"></i>} text='Tareas' />
+                <SideBarIcon icon={<i className="fa-solid fa-list-check"></i>} text='Tareas' />
             </div>
 
 
-            <SideBarIcon icon={<i class="fa-solid fa-gear"></i>} text='Configuración' />
+            <SideBarIcon icon={<i className="fa-solid fa-gear"></i>} text='Configuración' />
 
             <button type='button' onClick={logout}>
-                <SideBarIcon icon={<i class="fa-solid fa-right-from-bracket"></i>} text='Cerrar Sesión' />
+                <SideBarIcon icon={<i className="fa-solid fa-right-from-bracket"></i>} text='Cerrar Sesión' />
             </button>
         </header>
     )

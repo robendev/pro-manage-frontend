@@ -9,6 +9,7 @@ import ConfirmAccountView from "./views/Auth/ConfirmAccountView";
 import RecoverAccountView from "./views/Auth/RecoverAccountView";
 
 import DashboardView from "./views/Project/DashboardView";
+import ProjectView from "./views/Project/ProjectView";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         </Route>
         <Route element={<AppLayout />}>
           <Route path="/projects" element={<DashboardView />} />
+          <Route path="/projects/:projectId" element={<ProjectView />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -61,10 +61,15 @@ const AuthLayout = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between min-h-screen bg-gray-100 text-gray-800 px-4">
+    <div className="flex flex-col min-h-screen 
+                  text-gray-800
+                    p-4 space-y-4">
       <header
         id="top"
-        className="flex justify-evenly md:justify-around items-center container mx-auto my-2 gap-1 bg-white shadow-md rounded-lg"
+        className="flex justify-around items-center
+                  container mx-auto
+                  shadow-md rounded-lg
+                  bg-gradient-to-tr from-gray-200 to-gray-300"
       >
         <div className="w-20">
           <Link to={"/"}>
@@ -136,17 +141,18 @@ const AuthLayout = () => {
             </div>
           </form>
         )}
-
-
       </header>
 
-      <main className="container mx-auto flex-1 flex flex-col justify-center items-center bg-white shadow-md rounded-lg">
+      <main className="container mx-auto 
+                       flex-1 flex flex-col justify-center items-center
+                       bg-gradient-to-tr from-gray-200 to-gray-300
+                       shadow-md rounded-lg">
         <Outlet />
       </main>
 
-      <footer className="container mx-auto my-2 p-4 text-center font-bold bg-white shadow-md rounded-lg">
+      {/* <footer className="container mx-auto my-2 p-4 text-center font-bold bg-gradient-to-tr from-gray-200 to-gray-300 shadow-md rounded-lg">
         Todos los derechos reservados {new Date().getFullYear()}
-      </footer>
+      </footer> */}
     </div>
   );
 };

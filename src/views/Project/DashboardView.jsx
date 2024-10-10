@@ -8,7 +8,7 @@ const DashboardView = () => {
     queryFn: getAllProjects
   })
   return (
-    <div className="bg-white flex-1 flex flex-col shadow-md rounded-lg p-4">
+    <div className="bg-gradient-to-tr from-gray-200 to-gray-300 flex-1 flex flex-col shadow-md rounded-lg px-4 py-8">
       <div className="w-full max-w-5xl mx-auto space-y-1 mb-4">
         <h2 className="text-center font-bold line-clamp-1">Bienvenido a tu Dashboard de Proyectos</h2>
         <h3 className="font-semibold">¡Hola [Nombre del Usuario]!</h3>

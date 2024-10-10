@@ -79,3 +79,19 @@ a:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.border-paint::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: gray;
+  transition: width 2s;
+  transform: translateX(-50%);
+}
+
+.border-paint:hover::before {
+  width: 100%;
+}
