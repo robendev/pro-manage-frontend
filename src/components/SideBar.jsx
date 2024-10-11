@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
 const SideBar = ({ logout }) => {
+
     return (
+
         <header className='fixed top-0 left-0 
                            flex flex-col justify-between
                            bg-gradient-to-tr from-gray-200 to-gray-300
@@ -13,15 +15,18 @@ const SideBar = ({ logout }) => {
                 <Logo />
             </Link>
 
-            <div className='flex-1 space-y-4'>
-                <SideBarIcon icon={<i class="fa-solid fa-plus"></i>} text='Nuevo Proyecto' />
+            <div className='flex-1 flex flex-col items-center space-y-4'>
+                <Link to={"/new-project"}>
+                    <SideBarIcon icon={<i className="fa-solid fa-plus"></i>} text='Nuevo Proyecto' />
+                </Link>
 
-                <SideBarIcon icon={<i className="fa-solid fa-diagram-project"></i>} text='Proyectos' />
-
+                <Link to={"/projects"}>
+                    <SideBarIcon icon={<i className="fa-solid fa-diagram-project"></i>} text='Proyectos' />
+                </Link>
                 <SideBarIcon icon={<i className="fa-solid fa-list-check"></i>} text='Tareas' />
             </div>
 
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col justify-center items-center space-y-4'>
                 <SideBarIcon icon={<i className="fa-solid fa-user"></i>} text='Perfil' />
 
                 <SideBarIcon icon={<i className="fa-solid fa-gear"></i>} text='Configuración' />
@@ -31,6 +36,7 @@ const SideBar = ({ logout }) => {
                 </button>
             </div>
         </header>
+
     )
 }
 
@@ -42,6 +48,5 @@ const SideBarIcon = ({ icon, text = "tooltip 💡" }) => {
         </div>
     )
 }
-
 
 export default SideBar

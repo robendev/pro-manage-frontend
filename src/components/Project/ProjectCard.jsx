@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
+import { formatDate } from "../../utils/formatDate"
 
 const ProjectCard = ({project}) => {
+    console.log(project)
     return (
-        <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-80
-                        hover:from-white hover:to-gray-100">
+        <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-96
+                        hover:from-white hover:to-gray-100 z-0">
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i> {project._id}</p>
@@ -23,12 +25,12 @@ const ProjectCard = ({project}) => {
 
             <div className="space-y-1 *:text-xs">
                 <p className=""><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy}</span></p>
-                <p className=""><i className="fas fa-calendar-alt w-5"></i> Fecha de Creación: <span>{new Date(project.createdAt).toLocaleDateString()}</span></p>
-                <p className=""><i className="fas fa-calendar-check w-5"></i> Fecha de inicio: <span>{new Date(project.startDate).toLocaleDateString()}</span></p>
+                <p className=""><i className="fas fa-calendar-alt w-5"></i> Fecha de Creación: <span>{formatDate(project.createdAt)}</span></p>
+                <p className=""><i className="fas fa-calendar-check w-5"></i> Fecha de inicio: <span>{formatDate(project.startDate)}</span></p>
             </div>
 
             <div className="space-y-1 *:text-xs">
-                <p><i className="fas fa-calendar-times w-5"></i> Fecha de Finalización: {new Date(project.endDate).toLocaleDateString()}</p>
+                <p><i className="fas fa-calendar-times w-5"></i> Fecha de Finalización: {formatDate(project.endDate)}</p>
                 <p><i className="fas fa-users w-5"></i> Colaboradores: {project.collaborators.length}</p>
                 <p><i className="fas fa-tasks w-5"></i> Tareas: {project.tasks.length}</p>
                 <p><i className="fas fa-sticky-note w-5"></i> Notas: {project.notes.length}</p>

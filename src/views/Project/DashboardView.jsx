@@ -28,7 +28,6 @@ const DashboardView = () => {
           </div>
         )}
       </div>
-
     </div>
   )
 }
