@@ -2,7 +2,7 @@ const Modal = ({ children, onClose }) => {
     return (
         <div className="fixed inset-0
                         flex justify-center items-center
-                        bg-black/50 z-10">
+                        bg-black/50">
             <div className="w-full max-w-80">
                 <button onClick={onClose} className="absolute
                                                      top-4 right-4

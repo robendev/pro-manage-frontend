@@ -53,7 +53,15 @@ a:hover {
   .sidebar-icon {
     @apply relative flex justify-center items-center 
             w-10 h-10 mx-auto cursor-pointer my-2
-            bg-gradient-to-tr from-gray-600 to-gray-800 text-white shadow-md rounded-lg
+            bg-gradient-to-tr from-gray-300 to-gray-400 text-gray-950 shadow-md rounded-lg
+            hover:rounded-3xl
+            transition-all duration-300 ease-linear;
+  }
+
+  .sidebar-icon-active {
+    @apply relative flex justify-center items-center 
+            w-10 h-10 mx-auto cursor-pointer my-2
+            bg-gradient-to-tr from-gray-400 to-gray-500 text-gray-950 shadow-md rounded-lg
             hover:rounded-3xl
             transition-all duration-300 ease-linear;
   }
@@ -61,8 +69,8 @@ a:hover {
   .sidebar-tooltip {
     @apply absolute w-auto py-0.5 px-4 m-2 min-w-max left-10
            shadow-md rounded-lg
-           bg-gradient-to-tr from-gray-600 to-gray-800 text-white
-           text-xs
+           bg-gradient-to-tr from-gray-300 to-gray-400 text-gray-950
+           text-xs font-bold
            transition-all duration-300 scale-0 origin-left;
   }
 }

@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
 import { formatDate } from "../../utils/formatDate"
+import { priorityStyles, priorityTranslations } from "../../utils/priority"
+import { statusStyles, statusTranslations } from "../../utils/status"
 
-const ProjectCard = ({project}) => {
+const ProjectCard = ({ project }) => {
     console.log(project)
     return (
         <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-96
-                        hover:from-white hover:to-gray-100 z-0">
+                        hover:from-white hover:to-gray-100">
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i> {project._id}</p>
@@ -16,8 +18,8 @@ const ProjectCard = ({project}) => {
                 </Link>
 
                 <div className="flex justify-around items-center *:text-xs">
-                    <p className="font-semibold">Estado <span className="bg-[#FFD700] px-4 p-1 rounded-md">{project.status}</span></p>
-                    <p className="font-semibold">Prioridad <span className="bg-[#6C757D] text-[#FFFFFF] px-4 p-1 rounded-md">{project.priority}</span></p>
+                    <p className="font-semibold">Prioridad <span className={`${priorityStyles[project.priority]} px-4 p-1 rounded-md`}>{priorityTranslations[project.priority]}</span></p>
+                    <p className="font-semibold">Estado <span className={`${statusStyles[project.status]} px-4 p-1 rounded-md`}>{statusTranslations[project.status]}</span></p>
                 </div>
 
                 <p className="line-clamp-4 text-sm">{project.projectDescription}</p>
