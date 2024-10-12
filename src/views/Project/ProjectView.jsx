@@ -5,6 +5,12 @@ import { priorityStyles, priorityTranslations } from "../../utils/priority";
 import { statusStyles, statusTranslations } from "../../utils/status";
 import { formatDate } from "../../utils/formatDate";
 
+const groupPriority = {
+  low: [],
+  medium: [],
+  high: []
+};
+
 const ProjectView = () => {
   const { projectId } = useParams();
 
@@ -15,14 +21,19 @@ const ProjectView = () => {
     refetchOnWindowFocus: false,
   });
 
+  const groupedTasks = project?.tasks.reduce((acc, task) => {
+    let currentGroup = acc[task.priority] ? [...acc[task.priority]] : [];
+    currentGroup = [...currentGroup, task];
+    return { ...acc, [task.priority]: currentGroup }
+  }, groupPriority)
+
   if (project) return (
     <div className="px-4 py-4 md:py-8
                     space-y-4
                     bg-gradient-to-tr from-gray-100 to-gray-200
                     shadow-md shadow-gray-400 rounded-lg
                     flex-1 flex flex-col
-                    w-full max-w-5xl mx-auto
-                    hover:from-white hover:to-gray-100">
+                    w-full max-w-5xl mx-auto">
       <div>
         <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{project._id}</p>
         <h1 className="text-center font-bold line-clamp-1">{project.projectName}</h1>
@@ -56,13 +67,32 @@ const ProjectView = () => {
         </ul>
       </div>
 
-      <div>
-        <h2 className="font-bold">Tareas</h2>
-        <ul className="list-disc pl-5">
-          {project.tasks.map((task, index) => (
-            <li key={index} className="text-sm">{task}</li>
+      <div className="">
+        <h2 className="font-bold mb-2">Tareas</h2>
+        <div className="flex flex-row justify-around flex-1 flex-wrap gap-2">
+          {Object.entries(groupedTasks).map(([priority, tasks]) => (
+            <div key={priority} className="w-80">
+              <h3
+                className={`capitalize
+                            text-lg text-center 
+                            ${priorityStyles[priority]}
+                            rounded-lg
+                            py-1`}
+              >
+                {priorityTranslations[priority]}
+              </h3>
+              <ul className="mt-2 mb-4 space-y-2 bg-red-100">
+                {tasks.length === 0 ? (
+                  <li className="text-gray-950 text-center text-sm font-bold">
+                    No hay Tareas
+                  </li>
+                ) : (
+                  tasks.map((task) => <>TaskCard.jsx</>)
+                )}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       <div>
