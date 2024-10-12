@@ -15,7 +15,7 @@ const FormCreateProject = ({ register, errors }) => {
                             name='projectName'
                             placeholder='Nombre del Proyecto'
                             autoFocus
-                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none'
+                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none bg-gray-50 hover:bg-white focus:bg-white'
                             {...register("projectName", {
                                 required: {
                                     value: true,
@@ -46,7 +46,7 @@ const FormCreateProject = ({ register, errors }) => {
                             id="projectDescription"
                             name="projectDescription"
                             placeholder='Descripción del Proyecto'
-                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none resize-none'
+                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none bg-gray-50 hover:bg-white focus:bg-white'
                             {
                             ...register("projectDescription", {
                                 required: {
@@ -70,7 +70,7 @@ const FormCreateProject = ({ register, errors }) => {
                         <input type="date"
                             name="startDate"
                             id="startDate"
-                            className='w-full  px-4 py-2 shadow-md rounded-lg outline-none'
+                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none bg-gray-50 hover:bg-white focus:bg-white'
                             defaultValue={currentDate}
                             {...register("startDate", {
                                 pattern: {
@@ -91,7 +91,7 @@ const FormCreateProject = ({ register, errors }) => {
                         <input type="date"
                             name="endDate"
                             id="endDate"
-                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none'
+                            className='w-full px-4 py-2 shadow-md rounded-lg outline-none bg-gray-50 hover:bg-white focus:bg-white'
                             defaultValue={futureDate}
                             {...register("endDate", {
                                 pattern: {

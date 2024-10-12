@@ -26,6 +26,9 @@ const Router = () => {
           <Route path="/projects" element={<DashboardView />} />
           <Route path="/new-project" element={<NewProjectView />} />
           <Route path="/projects/:projectId" element={<ProjectView />} />
+          <Route path="/tasks" element={<h1>Tasks</h1>} />
+          <Route path="/profile" element={<h1>Profile</h1>} />
+          <Route path="/settings" element={<h1>Settings</h1>} />
         </Route>
       </Routes>
     </BrowserRouter>

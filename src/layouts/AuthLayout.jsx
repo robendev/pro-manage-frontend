@@ -63,7 +63,8 @@ const AuthLayout = () => {
   return (
     <div className="flex flex-col min-h-screen 
                   text-gray-800
-                    p-4 space-y-4">
+                    px-2 py-2 md:px-4 md:py-4 
+                    space-y-2 md:space-y-4">
       <header
         id="top"
         className="flex justify-around items-center
@@ -79,7 +80,11 @@ const AuthLayout = () => {
 
         {isLoggedIn ? (
           <div className="space-x-4 flex items-center">
-            <Link to={"/projects"} className="shadow-md rounded-lg border border-gray-800 px-4 py-1 bg-gray-800 text-white text-xs hover:text-white">
+            <Link to={"/projects"} className="shadow-md rounded-lg 
+                                              border border-transparent 
+                                              px-4 py-1 
+                                              bg-gradient-to-tr from-gray-700 to-gray-800
+                                              text-white text-xs hover:text-white">
               Ir a Proyectos
             </Link>
 
@@ -102,7 +107,13 @@ const AuthLayout = () => {
                 id="emailLogin"
                 name="emailLogin"
                 placeholder={errors.emailLogin ? errors.emailLogin.message : "Email"}
-                className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+                className={`border 
+                            shadow-md rounded-lg
+                            py-1 px-4 
+                            text-xs 
+                            w-full
+                            bg-gray-50
+                            focus:outline-none ${errors.emailLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
                 {...register("emailLogin", {
                   required: {
                     value: true,
@@ -121,8 +132,13 @@ const AuthLayout = () => {
                 id="passwordLogin"
                 name="passwordLogin"
                 placeholder={errors.passwordLogin ? errors.passwordLogin.message : "Contraseña"}
-                className={`border shadow-md rounded-lg py-1 px-4 text-xs w-full focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
-                {...register("passwordLogin", {
+                className={`border 
+                  shadow-md rounded-lg
+                  py-1 px-4 
+                  text-xs 
+                  w-full
+                  bg-gray-50
+                  focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}                {...register("passwordLogin", {
                   required: {
                     value: true,
                     message: "La contraseña es obligatoria.",
@@ -134,7 +150,10 @@ const AuthLayout = () => {
             <div className="max-w-44 col-start-2 row-start-1 row-span-2 lg:row-span-1 lg:col-start-3 w-full">
               <button
                 type="submit"
-                className="shadow-md rounded-lg text-xs w-full h-full bg-gray-800 text-white border border-gray-800"
+                className="w-full h-full shadow-md rounded-lg 
+                           text-xs text-white font-bold
+                           bg-gradient-to-tr from-gray-700 to-gray-800
+                           border border-transparent"
               >
                 Iniciar Sesión
               </button>

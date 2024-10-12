@@ -4,9 +4,12 @@ import { priorityStyles, priorityTranslations } from "../../utils/priority"
 import { statusStyles, statusTranslations } from "../../utils/status"
 
 const ProjectCard = ({ project }) => {
-    console.log(project)
     return (
-        <div className="px-4 py-8 space-y-3 bg-gradient-to-tr from-gray-100 to-gray-200 shadow-md shadow-gray-400 rounded-lg w-96
+        <div className="px-4 py-4 md:py-8
+                        space-y-4 
+                        bg-gradient-to-tr from-gray-100 to-gray-200 
+                        shadow-md shadow-gray-400 rounded-lg 
+                        w-80 md:w-96
                         hover:from-white hover:to-gray-100">
             <div className="space-y-2">
                 <div className="flex justify-between items-center">

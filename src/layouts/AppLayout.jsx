@@ -8,7 +8,8 @@ const AppLayout = () => {
     <div className="flex flex-col justify-between
                     min-h-screen 
                     text-gray-800
-                    px-4 py-4 ml-14">
+                    px-2 py-2 md:px-4 md:py-4 
+                    ml-14">
       <SideBar logout={ logout } />
 
       <main className="container mx-auto flex-1 flex">

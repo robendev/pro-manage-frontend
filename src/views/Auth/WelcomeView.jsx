@@ -99,10 +99,20 @@ const WelcomeView = () => {
             placeholder="Email"
             value={emailConfirmation}
             onChange={handleChange}
-            className="w-full max-w-[180px] px-4 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
+            className="w-full max-w-[180px]
+                       px-4 py-1
+                       border
+                       bg-gray-50
+                       shadow-md rounded-lg 
+                       text-xs focus:outline-none"
             autoComplete="new-password"
           />
-          <button onClick={handleRequestToken} className="shadow-md rounded-lg border border-gray-800 px-4 py-1 bg-gray-800 text-white text-xs disabled:bg-gray-800/75 disabled:border-transparent" disabled={emailConfirmation === ""}>Solicitar Token</button>
+          <button onClick={handleRequestToken} className="shadow-md rounded-lg 
+                                                          border border-transparent 
+                                                          px-4 py-1 
+                                                          bg-gradient-to-tr from-gray-700 to-gray-800 
+                                                          text-white text-xs 
+                                                          disabled:bg-gradient-to-tr disabled:from-gray-700/75 disabled:to-gray-800/75" disabled={emailConfirmation === ""}>Solicitar Token</button>
         </div>
       </div>
 
@@ -120,10 +130,20 @@ const WelcomeView = () => {
             placeholder="Email de Recuperación"
             value={emailRecoverAccount}
             onChange={handleChangeEmailRecoverAccount}
-            className="w-full max-w-[180px] px-4 py-1 border shadow-md rounded-lg text-xs focus:outline-none"
+            className="w-full max-w-[180px]
+                       px-4 py-1
+                       border
+                       bg-gray-50
+                       shadow-md rounded-lg 
+                       text-xs focus:outline-none"
             autoComplete="new-password"
           />
-          <button onClick={handleRecoverAccount} className="shadow-md rounded-lg border border-gray-800 px-4 py-1 bg-gray-800 text-white text-xs disabled:bg-gray-800/75 disabled:border-transparent" disabled={emailRecoverAccount === ""}>Enviar</button>
+          <button onClick={handleRecoverAccount} className="shadow-md rounded-lg 
+                                                            border border-transparent 
+                                                            px-4 py-1 
+                                                            bg-gradient-to-tr from-gray-700 to-gray-800 
+                                                            text-white text-xs 
+                                                            disabled:bg-gradient-to-tr disabled:from-gray-700/75 disabled:to-gray-800/75" disabled={emailRecoverAccount === ""}>Enviar</button>
         </div>
       </div>
 

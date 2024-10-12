@@ -56,7 +56,7 @@ const NewProjectView = () => {
                                     px-4 py-4 text-xs'>
                     <FormCreateProject register={register} errors={errors} />
                     <button type='submit' className='w-full
-                        bg-gradient-to-tr from-gray-600 to-gray-800
+                        bg-gradient-to-tr from-gray-700 to-gray-800
                         text-white
                         rounded-lg
                         py-1'>
