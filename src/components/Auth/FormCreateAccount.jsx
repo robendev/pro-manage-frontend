@@ -20,7 +20,8 @@ const FormCreateAccount = ({ register, errors, watch }) => {
                        border 
                        bg-gray-50
                        shadow-md rounded-lg 
-                       text-xs focus:outline-none"
+                       text-xs outline-none
+                       hover:bg-white focus:bg-white"
             {...register("username", {
               required: {
                 value: true,
@@ -59,7 +60,8 @@ const FormCreateAccount = ({ register, errors, watch }) => {
                        border 
                        bg-gray-50
                        shadow-md rounded-lg 
-                       text-xs focus:outline-none"
+                       text-xs outline-none
+                       hover:bg-white focus:bg-white"
             {...register("email", {
               required: {
                 value: true,
@@ -93,7 +95,8 @@ const FormCreateAccount = ({ register, errors, watch }) => {
                        border 
                        bg-gray-50
                        shadow-md rounded-lg 
-                       text-xs focus:outline-none"
+                       text-xs outline-none
+                       hover:bg-white focus:bg-white"
             {...register("password", {
               required: {
                 value: true,
@@ -144,7 +147,8 @@ const FormCreateAccount = ({ register, errors, watch }) => {
                        border 
                        bg-gray-50
                        shadow-md rounded-lg 
-                       text-xs focus:outline-none"
+                       text-xs outline-none
+                       hover:bg-white focus:bg-white"
             {...register("confirmPassword", {
               required: {
                 value: true,

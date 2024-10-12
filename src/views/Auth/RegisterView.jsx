@@ -41,10 +41,8 @@ const RegisterView = () => {
   };
 
   return (
-    <div className="flex flex-col p-4
-                    lg:flex-row lg:space-x-4">
-      <section className="flex-1 *:border-b *:border-gray-400
-                          lg:w-3/5">
+    <div className="flex flex-col items-center p-4">
+      <section className="flex-1 *:border-b *:border-gray-400">
         <div className="py-4">
           <h1 className="text-center font-bold mb-2 line-clamp-2">
             Regístrate y Únete a Nuestra Comunidad
@@ -83,7 +81,7 @@ const RegisterView = () => {
         </div>
       </section>
 
-      <section className="flex flex-col justify-center lg:w-2/5">
+      <section className="flex flex-col w-full">
         <div className="py-4">
           <p>
             Estamos emocionados de tenerte como parte de nuestra
@@ -93,7 +91,11 @@ const RegisterView = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full max-w-96 mx-auto p-4 mb-4 space-y-4 shadow-md rounded-lg bg-gray-100"
+          className="w-full max-w-96 mx-auto 
+                     p-4 mb-4 
+                     space-y-4 
+                     shadow-md rounded-lg 
+                     bg-gradient-to-tr from-gray-100 to-gray-200"
           noValidate
         >
           <h2 className="text-center font-bold">Registrarse</h2>
