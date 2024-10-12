@@ -13,14 +13,14 @@ const ProjectCard = ({ project }) => {
                         hover:from-white hover:to-gray-100">
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                    <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i> {project._id}</p>
+                    <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{project._id}</p>
                     <button type="button"><i className="fa-solid fa-ellipsis-vertical"></i></button>
                 </div>
                 <Link to={`/projects/${project._id}`}>
                     <h2 className="relative text-center font-bold line-clamp-1 border-paint">{project.projectName}</h2>
                 </Link>
 
-                <div className="flex justify-around items-center *:text-xs">
+                <div className="flex justify-around items-center *:text-xs *:font-light">
                     <p className="font-semibold">Prioridad <span className={`${priorityStyles[project.priority]} px-4 p-1 rounded-md`}>{priorityTranslations[project.priority]}</span></p>
                     <p className="font-semibold">Estado <span className={`${statusStyles[project.status]} px-4 p-1 rounded-md`}>{statusTranslations[project.status]}</span></p>
                 </div>

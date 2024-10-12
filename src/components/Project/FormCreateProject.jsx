@@ -14,7 +14,7 @@ const FormCreateProject = ({ register, errors }) => {
                             id='projectName'
                             name='projectName'
                             placeholder='Nombre del Proyecto'
-                            autoFocus
+                            /* autoFocus */
                             className='w-full px-4 py-2 shadow-md rounded-lg outline-none bg-gray-50 hover:bg-white focus:bg-white'
                             {...register("projectName", {
                                 required: {

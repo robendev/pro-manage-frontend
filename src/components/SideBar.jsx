@@ -16,15 +16,15 @@ const SideBar = ({ logout }) => {
             </Link>
 
             <div className='flex-1 flex flex-col items-center space-y-1'>
-                <NavLink to={"/new-project"} >
-                    {({ isActive }) => (
-                        <SideBarIcon icon={<i className="fa-solid fa-plus"></i>} text='Nuevo Proyecto' isActive={isActive} />
-                    )}
-                </NavLink>
-
                 <NavLink to={"/projects"}>
                     {({ isActive }) => (
                         <SideBarIcon icon={<i className="fa-solid fa-diagram-project"></i>} text='Proyectos' isActive={isActive} />
+                    )}
+                </NavLink>
+
+                <NavLink to={"/new-project"} >
+                    {({ isActive }) => (
+                        <SideBarIcon icon={<i className="fa-solid fa-plus"></i>} text='Nuevo Proyecto' isActive={isActive} />
                     )}
                 </NavLink>
 
