@@ -4,6 +4,7 @@ import { getProjectById } from "../../api/ProjectApi";
 import { priorityStyles, priorityTranslations } from "../../utils/priority";
 import { statusStyles, statusTranslations } from "../../utils/status";
 import { formatDate } from "../../utils/formatDate";
+import TaskCard from "../../components/Task/TaskCard";
 
 const groupPriority = {
   low: [],
@@ -66,33 +67,34 @@ const ProjectView = () => {
           ))}
         </ul>
       </div>
-
-      <div className="">
-        <h2 className="font-bold mb-2">Tareas</h2>
-        <div className="flex flex-row justify-around flex-1 flex-wrap gap-2">
-          {Object.entries(groupedTasks).map(([priority, tasks]) => (
-            <div key={priority} className="w-80">
-              <h3
-                className={`capitalize
+      
+      <h2 className="font-bold mb-2">Tareas</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
+                      lg:max-h-[728px] lg:overflow-y-auto
+                      mx-auto">
+        {Object.entries(groupedTasks).map(([priority, tasks]) => (
+          <div key={priority} className="w-80 p-4
+                                         rounded-lg">
+            <h3
+              className={`capitalize
                             text-lg text-center 
                             ${priorityStyles[priority]}
                             rounded-lg
                             py-1`}
-              >
-                {priorityTranslations[priority]}
-              </h3>
-              <ul className="mt-2 mb-4 space-y-2 bg-red-100">
-                {tasks.length === 0 ? (
-                  <li className="text-gray-950 text-center text-sm font-bold">
-                    No hay Tareas
-                  </li>
-                ) : (
-                  tasks.map((task) => <>TaskCard.jsx</>)
-                )}
-              </ul>
-            </div>
-          ))}
-        </div>
+            >
+              {priorityTranslations[priority]}
+            </h3>
+            <ul className="mt-2 space-y-2">
+              {tasks.length === 0 ? (
+                <li className="text-gray-950 text-center text-sm font-bold">
+                  No hay Tareas
+                </li>
+              ) : (
+                tasks.map((task) => <TaskCard key={task._id} task={task} />)
+              )}
+            </ul>
+          </div>
+        ))}
       </div>
 
       <div>
@@ -108,3 +110,11 @@ const ProjectView = () => {
 }
 
 export default ProjectView
+
+
+{/* className="flex flex-row justify-around 
+                      flex-1 flex-wrap
+                      max-h-[660px]
+                      overflow-y-scroll
+                      gap-2 rounded-lg
+                      bg-gradient-to-tr from-gray-200 to-gray-300" */}
