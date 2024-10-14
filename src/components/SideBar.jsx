@@ -9,7 +9,7 @@ const SideBar = ({ logout }) => {
                            flex flex-col justify-between
                            bg-gradient-to-tr from-gray-200 to-gray-300
                            shadow-md rounded-lg
-                           h-full w-14
+                           h-screen w-14
                            py-2'>
             <Link to={"/"}>
                 <Logo />
