@@ -29,7 +29,7 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <div className="space-y-1 *:text-xs">
-                <p className=""><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy}</span></p>
+                <p className=""><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy.email}</span></p>
                 <p className=""><i className="fas fa-calendar-alt w-5"></i> Fecha de Creación: <span>{formatDate(project.createdAt)}</span></p>
                 <p className=""><i className="fas fa-calendar-check w-5"></i> Fecha de inicio: <span>{formatDate(project.startDate)}</span></p>
             </div>

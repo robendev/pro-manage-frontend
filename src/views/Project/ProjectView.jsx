@@ -29,7 +29,7 @@ const ProjectView = () => {
     let currentGroup = acc[task.priority] ? [...acc[task.priority]] : [];
     currentGroup = [...currentGroup, task];
     return { ...acc, [task.priority]: currentGroup }
-  }, groupPriority)
+  }, groupPriority);
 
   if (project) return (
     <div className="px-4 py-4 md:py-8
@@ -56,7 +56,7 @@ const ProjectView = () => {
 
       <div>
         <h2 className="font-bold">Detalles del Proyecto</h2>
-        <p className="text-sm md:text-base xl:text-lg"><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy}</span></p>
+        <p className="text-sm md:text-base xl:text-lg"><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy.email}</span></p>
         <p className="text-sm md:text-base xl:text-lg"><i className="fas fa-calendar-alt w-5"></i> Fecha de Creación: <span>{formatDate(project.createdAt)}</span></p>
         <p className="text-sm md:text-base xl:text-lg"><i className="fas fa-calendar-check w-5"></i> Fecha de inicio: <span>{formatDate(project.startDate)}</span></p>
         <p className="text-sm md:text-base xl:text-lg"><i className="fas fa-calendar-times w-5"></i> Fecha de Finalización: <span>{formatDate(project.endDate)}</span></p>
@@ -64,9 +64,13 @@ const ProjectView = () => {
 
       <div>
         <h2 className="font-bold">Colaboradores</h2>
+        <div className="relative mb-4 w-72">
+          <input type="email" name="" id="" placeholder="Añadir colaborador" className="text-base shadow-md rounded-2xl bg-gray-50 outline-none pl-4 py-1 w-full" />
+          <i className="fa-solid fa-magnifying-glass absolute top-1/4 right-4"></i>
+        </div>
         <ul className="list-disc pl-5">
-          {project.collaborators.map((collaborator, index) => (
-            <li key={index} className="text-sm">{collaborator}</li>
+          {project.collaborators.map(collaborator => (
+            <li key={collaborator._id} className="text-sm">{collaborator.email}</li>
           ))}
         </ul>
       </div>
@@ -137,8 +141,6 @@ const ProjectView = () => {
           </div>
         ))}
       </div>
-
-
 
       <div>
         <h2 className="font-bold">Notas</h2>
