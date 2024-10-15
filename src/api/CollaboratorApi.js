@@ -1,0 +1,17 @@
+import { fetchWithInterceptors } from "./Interceptors";
+
+export const findCollaboratorByEmail = async (formData) => {
+  try {
+    const response = await fetchWithInterceptors(
+      `${import.meta.env.VITE_BACKEND_URL}/collaborators/find-collaborator`,
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+      },
+      true
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
