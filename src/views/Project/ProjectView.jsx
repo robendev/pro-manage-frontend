@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProjectById } from "../../api/ProjectApi";
 import { priorityStyles, priorityTranslations } from "../../utils/priority";
 import { statusStyles, statusTranslations } from "../../utils/status";
 import { formatDate } from "../../utils/formatDate";
 import TaskCard from "../../components/Task/TaskCard";
-import { findCollaboratorByEmail } from "../../api/CollaboratorApi";
+import { addCollaboratorById, findCollaboratorByEmail } from "../../api/CollaboratorApi";
 import { showToast } from "../../utils/toast";
+import CollaboratorCard from "../../components/Collaborator/CollaboratorCard";
 
 const groupPriority = {
   low: [],
@@ -18,7 +19,8 @@ const groupPriority = {
 const ProjectView = () => {
   const { projectId } = useParams();
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
+  const [showSearchResult, setShowSearchResult] = useState(false);
 
   const {
     isPending,
@@ -38,13 +40,21 @@ const ProjectView = () => {
     return { ...acc, [task.priority]: currentGroup };
   }, groupPriority);
 
-  const { mutate } = useMutation({
+  const { mutate: findCollaboratorByEmailMutate } = useMutation({
     mutationFn: findCollaboratorByEmail,
     onError: (error) => {
       showToast("error", error.message);
+      setTimeout(() => {
+        setSearchQuery("");
+      }, 5000);
     },
     onSuccess: (response) => {
-      setSearchResults(response);
+      setSearchResult(response);
+      setShowSearchResult(true);
+      setTimeout(() => {
+        setShowSearchResult(false);
+        setSearchResult(null);
+      }, 5000); // Ajusta el tiempo según tus necesidades
     },
   });
 
@@ -60,12 +70,40 @@ const ProjectView = () => {
           projectId,
           email: searchQuery,
         };
-        mutate(data);
+        findCollaboratorByEmailMutate(data);
       }
     }, 1000); // Ajusta el tiempo de debounce según tus necesidades
 
     return () => clearTimeout(debounceSearch);
   }, [searchQuery]);
+
+  const queryClient = useQueryClient();
+
+  const { mutate: addCollaboratorByIdMutate } = useMutation({
+    mutationFn: addCollaboratorById,
+    onError: (error) => {
+      showToast("error", error.message);
+      setSearchQuery("");
+    },
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      showToast("success", response.message);
+      setSearchQuery("");
+
+    },
+  });
+
+  const handleClickAddCollaborator = () => {
+    const isConfirmed = confirm(`¿Deseas agregar a ${searchResult.username} como colaborador?`)
+    if (isConfirmed) {
+      const data = {
+        projectId,
+        collaboratorId: searchResult._id
+      }
+      addCollaboratorByIdMutate(data)
+    }
+
+  }
 
   if (project)
     return (
@@ -89,9 +127,8 @@ const ProjectView = () => {
             <p className="font-semibold">
               Prioridad{" "}
               <span
-                className={`${
-                  priorityStyles[project.priority]
-                } px-4 p-1 rounded-md`}
+                className={`${priorityStyles[project.priority]
+                  } px-4 p-1 rounded-md`}
               >
                 {priorityTranslations[project.priority]}
               </span>
@@ -99,9 +136,8 @@ const ProjectView = () => {
             <p className="font-semibold">
               Estado{" "}
               <span
-                className={`${
-                  statusStyles[project.status]
-                } px-4 p-1 rounded-md`}
+                className={`${statusStyles[project.status]
+                  } px-4 p-1 rounded-md`}
               >
                 {statusTranslations[project.status]}
               </span>
@@ -160,27 +196,31 @@ const ProjectView = () => {
                 onChange={(event) => setSearchQuery(event.target.value)}
               />
               <i className="fa-solid fa-magnifying-glass absolute top-1/4 right-4"></i>
-              {searchResults && (
+              {showSearchResult && searchResult && (
                 <div
                   className="absolute w-full
                              flex justify-between items-center
-                             px-4 py-1 mt-1"
+                             px-4 py-4 mt-0.5
+                             rounded-lg text-white
+                             bg-gradient-to-tr from-gray-700 to-gray-800"
                 >
-                  {searchResults.email}
-                  <button type="button">
+                  <span>{searchResult.email}</span>
+                  <button type="button" onClick={handleClickAddCollaborator}>
                     <i className="fa-solid fa-user-plus"></i>
                   </button>
                 </div>
               )}
             </div>
           </div>
-          <ul className="list-disc pl-5">
-            {project.collaborators.map((collaborator) => (
-              <li key={collaborator._id} className="text-sm">
-                {collaborator.email}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-row flex-wrap gap-2 ">
+            {
+              project.collaborators.length === 0 ?
+                (<span className="text-gray-400">Aún no hay colaboradores asignados.</span>) :
+                (project.collaborators.map((collaborator) => (
+                  <CollaboratorCard key={collaborator._id} collaborator={collaborator}/>
+                )))
+            }
+          </div>
         </div>
 
         <h2 className="font-bold">Tareas</h2>

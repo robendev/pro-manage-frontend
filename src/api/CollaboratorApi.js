@@ -15,3 +15,18 @@ export const findCollaboratorByEmail = async (formData) => {
     throw error;
   }
 };
+export const addCollaboratorById = async (formData) => {
+  try {
+    const response = await fetchWithInterceptors(
+      `${import.meta.env.VITE_BACKEND_URL}/collaborators/add-collaborator`,
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+      },
+      true
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
