@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+
 import { getProjectById } from "../../api/ProjectApi";
+
 import { priorityStyles, priorityTranslations } from "../../utils/priority";
 import { statusStyles, statusTranslations } from "../../utils/status";
 import { formatDate } from "../../utils/formatDate";
+
+import CollaboratorsSection from "../../components/Collaborator/CollaboratorsSection";
+import FilterTasks from "../../components/Task/FilterTasks";
 import TaskCard from "../../components/Task/TaskCard";
-import { addCollaboratorById, findCollaboratorByEmail } from "../../api/CollaboratorApi";
-import { showToast } from "../../utils/toast";
-import CollaboratorCard from "../../components/Collaborator/CollaboratorCard";
 
 const groupPriority = {
   low: [],
@@ -18,9 +20,11 @@ const groupPriority = {
 
 const ProjectView = () => {
   const { projectId } = useParams();
+
+  /* Filtro de Colaboradores */
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState(null);
-  const [showSearchResult, setShowSearchResult] = useState(false);
+  const [showSearchResult, setShowSearchResult] = useState(false); /* Mostrar el resultado de búsqueda */
 
   const {
     isPending,
@@ -39,71 +43,6 @@ const ProjectView = () => {
     currentGroup = [...currentGroup, task];
     return { ...acc, [task.priority]: currentGroup };
   }, groupPriority);
-
-  const { mutate: findCollaboratorByEmailMutate } = useMutation({
-    mutationFn: findCollaboratorByEmail,
-    onError: (error) => {
-      showToast("error", error.message);
-      setTimeout(() => {
-        setSearchQuery("");
-      }, 5000);
-    },
-    onSuccess: (response) => {
-      setSearchResult(response);
-      setShowSearchResult(true);
-      setTimeout(() => {
-        setShowSearchResult(false);
-        setSearchResult(null);
-      }, 5000); // Ajusta el tiempo según tus necesidades
-    },
-  });
-
-  const validarEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  useEffect(() => {
-    const debounceSearch = setTimeout(async () => {
-      if (searchQuery.trim() !== "" && validarEmail(searchQuery)) {
-        const data = {
-          projectId,
-          email: searchQuery,
-        };
-        findCollaboratorByEmailMutate(data);
-      }
-    }, 1000); // Ajusta el tiempo de debounce según tus necesidades
-
-    return () => clearTimeout(debounceSearch);
-  }, [searchQuery]);
-
-  const queryClient = useQueryClient();
-
-  const { mutate: addCollaboratorByIdMutate } = useMutation({
-    mutationFn: addCollaboratorById,
-    onError: (error) => {
-      showToast("error", error.message);
-      setSearchQuery("");
-    },
-    onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
-      showToast("success", response.message);
-      setSearchQuery("");
-
-    },
-  });
-
-  const handleClickAddCollaborator = () => {
-    const isConfirmed = confirm(`¿Deseas agregar a ${searchResult.username} como colaborador?`)
-    if (isConfirmed) {
-      const data = {
-        projectId,
-        collaboratorId: searchResult._id
-      }
-      addCollaboratorByIdMutate(data)
-    }
-
-  }
 
   if (project)
     return (
@@ -176,111 +115,12 @@ const ProjectView = () => {
           </p>
         </div>
 
-        <div>
-          <div
-            className="mb-4 flex flex-col
-                        sm:flex-row sm:items-center sm:gap-4"
-          >
-            <h2 className="font-bold">Colaboradores</h2>
-            <div className="relative w-80">
-              <input
-                type="email"
-                name=""
-                id=""
-                placeholder="Añadir colaborador"
-                className="shadow-md rounded-lg
-                          bg-gray-50 outline-none
-                          pl-4 py-1
-                          w-full"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-              />
-              <i className="fa-solid fa-magnifying-glass absolute top-1/4 right-4"></i>
-              {showSearchResult && searchResult && (
-                <div
-                  className="absolute w-full
-                             flex justify-between items-center
-                             px-4 py-4 mt-0.5
-                             rounded-lg text-white
-                             bg-gradient-to-tr from-gray-700 to-gray-800"
-                >
-                  <span>{searchResult.email}</span>
-                  <button type="button" onClick={handleClickAddCollaborator}>
-                    <i className="fa-solid fa-user-plus"></i>
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="flex flex-row flex-wrap gap-2 ">
-            {
-              project.collaborators.length === 0 ?
-                (<span className="text-gray-400">Aún no hay colaboradores asignados.</span>) :
-                (project.collaborators.map((collaborator) => (
-                  <CollaboratorCard key={collaborator._id} collaborator={collaborator}/>
-                )))
-            }
-          </div>
-        </div>
-
-        <h2 className="font-bold">Tareas</h2>
-        <nav
-          className="flex flex-col sm:flex-row justify-between
-                      shadow-md rounded-lg p-2"
-        >
-          <div
-            className="gap-2 flex-1 
-                        grid grid-cols-2
-                        sm:grid-cols-3"
-          >
-            <select
-              className="p-2 outline-none bg-gray-50
-                             shadow-md rounded-lg
-                             col-span-2"
-            >
-              <option value="">Prioridad - Estado</option>
-              <optgroup label="Prioridad">
-                <option value="low">Baja</option>
-                <option value="medium">Media</option>
-                <option value="high">Alta</option>
-              </optgroup>
-              <optgroup label="Estado">
-                <option value="pending">Pendiente</option>
-                <option value="in-progress">En Progreso</option>
-                <option value="completed">Completado</option>
-              </optgroup>
-            </select>
-            <button
-              className="p-2
-                             bg-gradient-to-tr from-gray-200 to-gray-300
-                             hover:from-gray-300 hover:to-gray-400
-                             shadow-md rounded-lg
-                             sm:col-start-1"
-            >
-              <i className="fa-solid fa-filter mr-1"></i>Filtrar
-            </button>
-            <button
-              className="p-2
-                             bg-gradient-to-tr from-gray-200 to-gray-300
-                             hover:from-gray-300 hover:to-gray-400
-                             shadow-md rounded-lg"
-            >
-              <i className="fa-solid fa-filter-circle-xmark mr-1"></i>Limpiar
-              Filtros
-            </button>
-            <button
-              className="p-2
-                             bg-gradient-to-tr from-gray-200 to-gray-300
-                             hover:from-gray-300 hover:to-gray-400
-                             shadow-md rounded-lg
-                             col-span-2
-                             sm:col-span-1 sm:row-start-1 sm:row-span-2 sm:col-start-3"
-            >
-              <i className="fa-solid fa-circle-plus mr-1"></i>Agregar Tarea
-            </button>
-          </div>
-        </nav>
-
+        <CollaboratorsSection project={project} projectId={projectId}
+                              searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                              searchResult={searchResult} setSearchResult={setSearchResult}
+                              showSearchResult={showSearchResult} setShowSearchResult={setShowSearchResult} />
+        
+        <FilterTasks />
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
                       lg:max-h-[728px] lg:overflow-y-auto
