@@ -15,7 +15,7 @@ const SideBar = ({ logout }) => {
                 <Logo />
             </Link>
 
-            <div className='flex-1 flex flex-col items-center space-y-1'>
+            <div className='flex-1 flex flex-col jc items-center space-y-1'>
                 <NavLink to={"/projects"}>
                     {({ isActive }) => (
                         <SideBarIcon icon={<i className="fa-solid fa-diagram-project"></i>} text='Proyectos' isActive={isActive} />

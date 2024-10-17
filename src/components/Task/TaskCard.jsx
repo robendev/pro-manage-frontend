@@ -9,7 +9,7 @@ const TaskCard = ({ task }) => {
                         space-y-2
                         bg-gradient-to-tr from-gray-100 to-gray-200 
                         shadow-md shadow-gray-400 rounded-lg 
-                        w-72 mx-auto
+                        w-full max-w-72 mx-auto
                         hover:from-white hover:to-gray-100">
                 <div className="space-y-2">
                     <div className="flex justify-between items-center">

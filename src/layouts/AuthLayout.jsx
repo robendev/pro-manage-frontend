@@ -138,7 +138,8 @@ const AuthLayout = () => {
                   text-xs 
                   w-full
                   bg-gray-50
-                  focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}                {...register("passwordLogin", {
+                  focus:outline-none ${errors.passwordLogin ? "border-red-300 placeholder:text-red-400 font-light" : "border-gray-100"} `}
+                  {...register("passwordLogin", {
                   required: {
                     value: true,
                     message: "La contraseña es obligatoria.",

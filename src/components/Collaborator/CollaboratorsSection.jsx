@@ -80,7 +80,7 @@ const CollaboratorsSection = ({
                         sm:flex-row sm:items-center sm:gap-4"
             >
                 <h2 className="font-bold">Colaboradores</h2>
-                <div className="relative w-80">
+                <div className="relative w-80 max-w-[98%]">
                     <input
                         type="email"
                         name=""
@@ -115,7 +115,7 @@ const CollaboratorsSection = ({
                     project.collaborators.length === 0 ?
                         (<span className="text-gray-400">Aún no hay colaboradores asignados.</span>) :
                         (project.collaborators.map((collaborator) => (
-                            <CollaboratorCard key={collaborator._id} collaborator={collaborator} />
+                            <CollaboratorCard key={collaborator._id} collaborator={collaborator} projectId={projectId} />
                         )))
                 }
             </div>

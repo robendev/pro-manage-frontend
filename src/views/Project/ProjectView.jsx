@@ -10,13 +10,6 @@ import { formatDate } from "../../utils/formatDate";
 
 import CollaboratorsSection from "../../components/Collaborator/CollaboratorsSection";
 import FilterTasks from "../../components/Task/FilterTasks";
-import TaskCard from "../../components/Task/TaskCard";
-
-const groupPriority = {
-  low: [],
-  medium: [],
-  high: [],
-};
 
 const ProjectView = () => {
   const { projectId } = useParams();
@@ -37,12 +30,6 @@ const ProjectView = () => {
     enabled: !!projectId,
     refetchOnWindowFocus: false,
   });
-
-  const groupedTasks = project?.tasks.reduce((acc, task) => {
-    let currentGroup = acc[task.priority] ? [...acc[task.priority]] : [];
-    currentGroup = [...currentGroup, task];
-    return { ...acc, [task.priority]: currentGroup };
-  }, groupPriority);
 
   if (project)
     return (
@@ -116,43 +103,11 @@ const ProjectView = () => {
         </div>
 
         <CollaboratorsSection project={project} projectId={projectId}
-                              searchQuery={searchQuery} setSearchQuery={setSearchQuery}
-                              searchResult={searchResult} setSearchResult={setSearchResult}
-                              showSearchResult={showSearchResult} setShowSearchResult={setShowSearchResult} />
-        
-        <FilterTasks />
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-                      lg:max-h-[728px] lg:overflow-y-auto
-                      mx-auto"
-        >
-          {Object.entries(groupedTasks).map(([priority, tasks]) => (
-            <div
-              key={priority}
-              className="w-80 p-4
-                                         rounded-lg"
-            >
-              <h3
-                className={`capitalize
-                            text-lg text-center 
-                            ${priorityStyles[priority]}
-                            rounded-lg
-                            py-1`}
-              >
-                {priorityTranslations[priority]}
-              </h3>
-              <ul className="mt-2 space-y-2">
-                {tasks.length === 0 ? (
-                  <li className="text-gray-950 text-center text-sm font-bold">
-                    No hay Tareas
-                  </li>
-                ) : (
-                  tasks.map((task) => <TaskCard key={task._id} task={task} />)
-                )}
-              </ul>
-            </div>
-          ))}
-        </div>
+          searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+          searchResult={searchResult} setSearchResult={setSearchResult}
+          showSearchResult={showSearchResult} setShowSearchResult={setShowSearchResult} />
+
+        <FilterTasks project={project} projectId={projectId} />
 
         <div>
           <h2 className="font-bold">Notas</h2>

@@ -30,3 +30,18 @@ export const addCollaboratorById = async (formData) => {
     throw error;
   }
 };
+export const removeCollaboratorById = async (formData) => {
+  try {
+    const response = await fetchWithInterceptors(
+      `${import.meta.env.VITE_BACKEND_URL}/collaborators/remove-collaborator`,
+      {
+        method: "DELETE",
+        body: JSON.stringify(formData),
+      },
+      true
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
