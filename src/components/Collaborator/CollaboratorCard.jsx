@@ -3,7 +3,9 @@ import { useState } from "react";
 import { removeCollaboratorById } from "../../api/CollaboratorApi";
 import { showToast } from "../../utils/toast";
 
-const CollaboratorCard = ({ collaborator, projectId }) => {
+const CollaboratorCard = ({ collaborator, projectId, userData, project }) => {
+    const isProjectCreator = project.createdBy._id === userData._id;
+
     const [showEmail, setShowEmail] = useState(false);
 
     const queryClient = useQueryClient();
@@ -41,10 +43,15 @@ const CollaboratorCard = ({ collaborator, projectId }) => {
             onMouseLeave={() => setShowEmail(false)}>
             <div className="flex justify-between items-center">
                 <p className="text-xs text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{collaborator._id}</p>
-                <button className="text-xs text-red-500"
-                        onClick={handleClickremoveCollaboratorById}>
-                    <i class="fa-solid fa-user-xmark"></i>
-                </button>
+                {
+                    isProjectCreator && (
+                        <button className="text-xs text-red-500"
+                            onClick={handleClickremoveCollaboratorById}>
+                            <i class="fa-solid fa-user-xmark"></i>
+                        </button>
+                    )
+                }
+
             </div>
             {
                 showEmail ?

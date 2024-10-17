@@ -10,11 +10,11 @@ const AppLayout = () => {
                     text-gray-800
                     px-2 py-2 md:px-4 md:py-4 
                     ml-14">
-      <SideBar logout={ logout } />
+      <SideBar logout={ logout } userData={data} />
 
       <main className="container mx-auto flex-1 flex">
         {
-          isError ? (<Navigate to={"/"} />) : (data && <Outlet />)
+          isError ? (<Navigate to={"/"} />) : (data && <Outlet context={{ userData: data }} />)
         }
       </main>
     </div>

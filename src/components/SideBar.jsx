@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import Logo from './Logo'
 
-const SideBar = ({ logout }) => {
+const SideBar = ({ logout, userData }) => {
 
     return (
 

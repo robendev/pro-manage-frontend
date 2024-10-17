@@ -3,7 +3,8 @@ import { formatDate } from "../../utils/formatDate"
 import { priorityStyles, priorityTranslations } from "../../utils/priority"
 import { statusStyles, statusTranslations } from "../../utils/status"
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, userData }) => {
+    const isProjectCreator = project.createdBy._id === userData._id;
     return (
         <div className="px-4 py-4 md:py-8
                         space-y-4 
@@ -14,7 +15,7 @@ const ProjectCard = ({ project }) => {
             <div className="space-y-2">
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{project._id}</p>
-                    <button type="button"><i className="fa-solid fa-ellipsis-vertical"></i></button>
+                    {isProjectCreator && <button type="button"><i className="fa-solid fa-ellipsis-vertical"></i></button>}
                 </div>
                 <Link to={`/projects/${project._id}`}>
                     <h2 className="relative text-center font-bold line-clamp-1 border-paint">{project.projectName}</h2>
@@ -29,7 +30,11 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <div className="space-y-1 *:text-xs">
-                <p className=""><i className="fas fa-user w-5"></i> Creado por: <span>{project.createdBy.email}</span></p>
+                <p className="">
+                    <i className="fas fa-user w-5"></i>
+                    Creado por: <span>{project.createdBy.email}</span>
+                    {isProjectCreator && <i className="fas fa-crown text-yellow-500 ml-1"></i>}
+                </p>
                 <p className=""><i className="fas fa-calendar-alt w-5"></i> Fecha de Creación: <span>{formatDate(project.createdAt)}</span></p>
                 <p className=""><i className="fas fa-calendar-check w-5"></i> Fecha de inicio: <span>{formatDate(project.startDate)}</span></p>
             </div>

@@ -10,10 +10,12 @@ const validarEmail = (email) => {
 };
 
 const CollaboratorsSection = ({
-    project, projectId,
+    userData, project, projectId,
     searchQuery, setSearchQuery,
     searchResult, setSearchResult,
     showSearchResult, setShowSearchResult }) => {
+    const isProjectCreator = project.createdBy._id === userData._id;
+
     const { mutate: findCollaboratorByEmailMutate } = useMutation({
         mutationFn: findCollaboratorByEmail,
         onError: (error) => {
@@ -81,19 +83,26 @@ const CollaboratorsSection = ({
             >
                 <h2 className="font-bold">Colaboradores</h2>
                 <div className="relative w-80 max-w-[98%]">
-                    <input
-                        type="email"
-                        name=""
-                        id=""
-                        placeholder="Añadir colaborador"
-                        className="shadow-md rounded-lg
+                    {
+                        isProjectCreator && (
+                            <>
+                                <input
+                                    type="email"
+                                    name=""
+                                    id=""
+                                    placeholder="Añadir colaborador"
+                                    className="shadow-md rounded-lg
                           bg-gray-50 outline-none
                           pl-4 py-1
                           w-full"
-                        value={searchQuery}
-                        onChange={(event) => setSearchQuery(event.target.value)}
-                    />
-                    <i className="fa-solid fa-magnifying-glass absolute top-1/4 right-4"></i>
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                />
+                                <i className="fa-solid fa-magnifying-glass absolute top-1/4 right-4"></i>
+                            </>
+                        )
+                    }
+
                     {showSearchResult && searchResult && (
                         <div
                             className="absolute w-full
@@ -115,7 +124,11 @@ const CollaboratorsSection = ({
                     project.collaborators.length === 0 ?
                         (<span className="text-gray-400">Aún no hay colaboradores asignados.</span>) :
                         (project.collaborators.map((collaborator) => (
-                            <CollaboratorCard key={collaborator._id} collaborator={collaborator} projectId={projectId} />
+                            <CollaboratorCard key={collaborator._id} 
+                                              collaborator={collaborator} 
+                                              projectId={projectId} 
+                                              userData={userData}
+                                              project={project} />
                         )))
                 }
             </div>

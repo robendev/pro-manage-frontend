@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { getProjectById } from "../../api/ProjectApi";
@@ -12,6 +12,8 @@ import CollaboratorsSection from "../../components/Collaborator/CollaboratorsSec
 import FilterTasks from "../../components/Task/FilterTasks";
 
 const ProjectView = () => {
+  const { userData } = useOutletContext();
+
   const { projectId } = useParams();
 
   /* Filtro de Colaboradores */
@@ -30,6 +32,8 @@ const ProjectView = () => {
     enabled: !!projectId,
     refetchOnWindowFocus: false,
   });
+
+  const isProjectCreator = project?.createdBy._id === userData._id;
 
   if (project)
     return (
@@ -85,9 +89,11 @@ const ProjectView = () => {
         <div>
           <h2 className="font-bold">Detalles del Proyecto</h2>
           <p className="text-sm md:text-base xl:text-lg">
-            <i className="fas fa-user w-5"></i> Creado por:{" "}
-            <span>{project.createdBy.email}</span>
+            <i className="fas fa-user w-5"></i> {" "}
+            Creado por: <span>{project.createdBy.email}</span>
+            {isProjectCreator && <i className="fas fa-crown text-yellow-500 ml-1"></i>}
           </p>
+
           <p className="text-sm md:text-base xl:text-lg">
             <i className="fas fa-calendar-alt w-5"></i> Fecha de Creación:{" "}
             <span>{formatDate(project.createdAt)}</span>
@@ -102,7 +108,7 @@ const ProjectView = () => {
           </p>
         </div>
 
-        <CollaboratorsSection project={project} projectId={projectId}
+        <CollaboratorsSection userData={userData} project={project} projectId={projectId}
           searchQuery={searchQuery} setSearchQuery={setSearchQuery}
           searchResult={searchResult} setSearchResult={setSearchResult}
           showSearchResult={showSearchResult} setShowSearchResult={setShowSearchResult} />
