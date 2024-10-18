@@ -6,13 +6,16 @@ import { statusStyles, statusTranslations } from "../../utils/status"
 const ProjectCard = ({ project, userData }) => {
     const isProjectCreator = project.createdBy._id === userData._id;
     return (
-        <div className="px-4 py-4 md:py-8
-                        space-y-4 
+        <div className="px-4 py-4
+                        space-y-2 
                         bg-gradient-to-tr from-gray-100 to-gray-200 
                         shadow-md shadow-gray-400 rounded-lg 
                         w-80 md:w-96
                         hover:from-white hover:to-gray-100">
             <div className="space-y-2">
+                {isProjectCreator ? 
+                (<p className="font-bold text-xs border border-[#007BFF] rounded-lg py-0.5 px-4 inline-block bg-blue-100 text-[#007BFF]">Administrador</p>) : 
+                (<p className="font-bold text-xs border border-[#6C757D] rounded-lg py-0.5 px-4 inline-block bg-gray-100 text-[#6C757D]">Colaborador</p>)}
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{project._id}</p>
                     {isProjectCreator && <button type="button"><i className="fa-solid fa-ellipsis-vertical"></i></button>}
