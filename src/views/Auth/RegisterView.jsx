@@ -41,82 +41,74 @@ const RegisterView = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <section className="flex-1 *:border-b *:border-gray-400">
-        <div className="py-4">
-          <h1 className="text-center font-bold mb-2 line-clamp-2">
-            Regístrate y Únete a Nuestra Comunidad
-          </h1>
-          <p>
-            Bienvenido a <span>Pro Manage</span>! Estamos encantados de que
-            hayas decidido unirte a nuestra comunidad. Al registrarte, podrás
-            acceder a una amplia gama de funcionalidades que te ayudarán a
-            gestionar tus proyectos de manera eficiente. ¡Completa el formulario
-            a continuación para comenzar!
-          </p>
-        </div>
+    <div className="flex-1 flex flex-col p-1 gap-1
+                    sm-500:p-2 sm-500:gap-2
+                    md:p-4 md:gap-4">
+      <div>
+        <h1 className="text-center font-bold line-clamp-2">
+          Regístrate y Únete a Nuestra Comunidad
+        </h1>
+        <p>
+          Bienvenido a <span className="text-azul-brillante font-bold">Pro Manage</span>! Estamos encantados de que
+          hayas decidido unirte a nuestra comunidad. Al registrarte, podrás
+          acceder a una amplia gama de funcionalidades que te ayudarán a
+          gestionar tus proyectos de manera eficiente. ¡Completa el formulario
+          a continuación para comenzar!
+        </p>
+      </div>
 
-        <div className="py-4">
-          <p className="mb-2">
-            Al registrarte, podrás disfrutar de las siguientes ventajas:
-          </p>
-          <ul className="list-disc list-inside">
-            <li>Creación y Gestión de Proyectos</li>
-            <li>Agregar Tareas y Colaboradores</li>
-            <li>Acceso a Herramientas Avanzadas</li>
-            <li>Soporte y Actualizaciones</li>
-          </ul>
-        </div>
 
-        <div className="py-4">
-          <p className="mb-2">
-            Para completar el registro, sigue estos sencillos pasos:
-          </p>
-          <ol className="list-decimal list-inside">
-            <li>Ingresa tu Nombre de Usuario</li>
-            <li>Proporciona tu Dirección de Correo Electrónico</li>
-            <li>Crea una Contraseña Segura</li>
-            <li>Haz Clic en "Registrarse"</li>
-          </ol>
-        </div>
-      </section>
+      <div>
+        <p>
+          Al registrarte, podrás disfrutar de las siguientes ventajas:
+        </p>
+        <ul className=" list-decimal list-inside ml-5">
+          <li>Creación y Gestión de Proyectos</li>
+          <li>Agregar Tareas y Colaboradores</li>
+          <li>Acceso a Herramientas Avanzadas</li>
+          <li>Soporte y Actualizaciones</li>
+        </ul>
+      </div>
 
-      <section className="flex flex-col w-full">
-        <div className="py-4">
-          <p>
-            Estamos emocionados de tenerte como parte de nuestra
-            comunidad.¡Esperamos que disfrutes de tu experiencia con nosotros!
-          </p>
-        </div>
+      <div>
+        <p>
+          Para completar el registro, sigue estos sencillos pasos:
+        </p>
+        <ul className="list-decimal list-inside ml-5">
+          <li>Ingresa tu Nombre de Usuario</li>
+          <li>Proporciona tu Dirección de Correo Electrónico</li>
+          <li>Crea una Contraseña Segura</li>
+          <li>Haz Clic en "Registrarse"</li>
+        </ul>
+      </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-full max-w-96 mx-auto 
-                     p-4 mb-4 
-                     space-y-4 
-                     shadow-md rounded-lg 
-                     bg-gradient-to-tr from-gray-100 to-gray-200"
-          noValidate
+
+      <p>
+        Estamos emocionados de tenerte como parte de nuestra
+        comunidad.¡Esperamos que disfrutes de tu experiencia con nosotros!
+      </p>
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-80 mx-auto 
+                   p-4 space-y-4 my-4 rounded-sm shadow
+                   bg-gray-100"
+        noValidate
+      >
+        <h1 className="text-center font-bold">Registrarse</h1>
+        <FormCreateAccount
+          register={register}
+          errors={errors}
+          watch={watch}
+        />
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-azul-brillante to-azul-oscuro rounded-3xl text-white font-bold py-1 px-2 tracking-wide"
         >
-          <h2 className="text-center font-bold">Registrarse</h2>
-          <FormCreateAccount
-            register={register}
-            errors={errors}
-            watch={watch}
-          />
-          <button
-            type="submit"
-            className="w-full 
-                       shadow-md rounded-lg 
-                       text-sm 
-                       bg-gradient-to-tr from-gray-700 to-gray-800
-                       text-white 
-                       py-1"
-          >
-            Registrarse
-          </button>
-        </form>
-      </section>
+          Registrarse
+        </button>
+      </form>
+
     </div>
   );
 };

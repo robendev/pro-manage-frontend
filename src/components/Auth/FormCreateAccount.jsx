@@ -5,7 +5,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
   return (
     <>
       <div>
-        <label htmlFor="username" className="block text-gray-700 sr-only">
+        <label htmlFor="username" className="sr-only">
           Nombre de usuario
         </label>
         <div className="relative flex items-center gap-2">
@@ -15,13 +15,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="username"
             name="username"
             placeholder="Nombre de usuario"
-            className="w-full
-                       px-4 py-1
-                       border 
-                       bg-gray-50
-                       shadow-md rounded-lg 
-                       text-xs outline-none
-                       hover:bg-white focus:bg-white"
+            className="w-full outline-none bg-white rounded-3xl shadow py-1 px-4"
             {...register("username", {
               required: {
                 value: true,
@@ -45,7 +39,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
         </div>
       </div>
       <div>
-        <label htmlFor="email" className="block text-gray-700 sr-only">
+        <label htmlFor="email" className="sr-only">
           Email
         </label>
         <div className="relative flex items-center gap-2">
@@ -55,13 +49,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="email"
             name="email"
             placeholder="Email"
-            className="w-full
-                       px-4 py-1
-                       border 
-                       bg-gray-50
-                       shadow-md rounded-lg 
-                       text-xs outline-none
-                       hover:bg-white focus:bg-white"
+            className="w-full outline-none bg-white rounded-3xl shadow py-1 px-4"
             {...register("email", {
               required: {
                 value: true,
@@ -80,7 +68,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-gray-700 sr-only">
+        <label htmlFor="password" className="sr-only">
           Contraseña
         </label>
         <div className="relative flex items-center gap-2">
@@ -90,13 +78,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="password"
             name="password"
             placeholder="Contraseña"
-            className="w-full
-                       px-4 py-1
-                       border 
-                       bg-gray-50
-                       shadow-md rounded-lg 
-                       text-xs outline-none
-                       hover:bg-white focus:bg-white"
+            className="w-full outline-none bg-white rounded-3xl shadow py-1 px-4"
             {...register("password", {
               required: {
                 value: true,
@@ -131,7 +113,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
       <div>
         <label
           htmlFor="confirmPassword"
-          className="block text-gray-700 sr-only"
+          className="sr-only"
         >
           Contraseña
         </label>
@@ -142,13 +124,7 @@ const FormCreateAccount = ({ register, errors, watch }) => {
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Confirmación de Contraseña"
-            className="w-full
-                       px-4 py-1
-                       border 
-                       bg-gray-50
-                       shadow-md rounded-lg 
-                       text-xs outline-none
-                       hover:bg-white focus:bg-white"
+            className="w-full outline-none bg-white rounded-3xl shadow py-1 px-4"
             {...register("confirmPassword", {
               required: {
                 value: true,

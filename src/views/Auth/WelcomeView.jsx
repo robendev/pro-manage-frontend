@@ -51,7 +51,7 @@ const WelcomeView = () => {
   return (
     <div className="flex-1 flex flex-col p-1 gap-1
                     sm-500:p-2 sm-500:gap-2
-                    md:p-4">
+                    md:p-4 md:gap-4">
       <h1 className="text-center font-bold line-clamp-2">
         Bienvenido a la Administración de Proyectos
       </h1>
@@ -81,13 +81,21 @@ const WelcomeView = () => {
       <div className="p-1 space-y-1 border-b-2 border-azul-claro
                       md:p-2 md:space-y-2">
         <h2 className="font-bold">¿Ya tienes una cuenta?</h2>
-        <a href="#top" className="text-azul-brillante hover:text-azul-oscuro ml-5">Iniciar Sesión<i className="fas fa-sign-in-alt ml-1 text-gris-oscuro"></i></a>
+        <a href="#top" 
+           className="text-azul-brillante hover:text-azul-oscuro ml-5">
+            <i className="fas fa-sign-in-alt mr-1 text-gris-oscuro"></i>
+            Iniciar Sesión
+        </a>
       </div>
 
       <div className="p-1 space-y-1 border-b-2 border-azul-claro
                       md:p-2 md:space-y-2">
         <h2 className="font-bold">¿Aún no tienes una cuenta?</h2>
-          <Link to="/auth/create-account" className="text-azul-brillante hover:text-azul-oscuro ml-5">Registrarse<i className="fas fa-user-plus ml-1 text-gris-oscuro"></i></Link>
+          <Link to="/auth/create-account" 
+                className="text-azul-brillante hover:text-azul-oscuro ml-5">
+                  <i className="fas fa-user-plus mr-1 text-gris-oscuro"></i>
+                  Registrarse
+          </Link>
       </div>
 
       <div className="p-1 space-y-1 border-b-2 border-azul-claro
