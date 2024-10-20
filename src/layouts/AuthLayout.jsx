@@ -79,14 +79,14 @@ const AuthLayout = () => {
 
         {isLoggedIn ? (
           <div className="w-full flex p-1 gap-1 justify-end items-center">
-            <nav className="w-2/3 flex justify-evenly p-1">
+            <nav className="w-full flex justify-evenly p-1">
               <Link to={"/projects"} className="py-1 px-2 font-bold text-azul-brillante hover:text-azul-oscuro">Proyectos</Link>
               <Link to={"/tasks"} className="py-1 px-2 font-bold text-azul-brillante hover:text-azul-oscuro">Tareas</Link>
             </nav>
 
             <button
               type="button"
-              className="w-1/3 bg-gradient-to-r from-azul-brillante to-azul-oscuro rounded-3xl text-white font-bold py-1 px-2 tracking-wide"
+              className="min-w-max bg-gradient-to-r from-azul-brillante to-azul-oscuro rounded-3xl text-white font-bold py-1 px-2 tracking-wide"
               onClick={handleLogout}
             >
               Logout
