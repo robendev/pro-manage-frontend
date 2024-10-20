@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* index.css */
-
-/* Tipografía */
 body {
-  font-family: "Monserat", sans-serif;
-  color: #343a40;
+  font-family: 'Lato', sans-serif;
+  color: #495057; /* Gris oscuro alternativo para el texto del cuerpo */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,34 +16,41 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
-  color: #343a40;
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 2.25rem; /* 36px */
+  color: #007BFF; /* Azul brillante para los títulos principales */
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 1.5rem; /* 24px */
+  color: #0056b3; /* Azul oscuro para los títulos secundarios */
 }
 
 p {
-  font-size: 16px;
-  color: #343a40;
+  font-size: 1rem; /* 16px */
+  color: #495057; /* Gris oscuro alternativo para los párrafos */
   margin: 0;
   padding: 0;
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
+/* Media Queries para dispositivos móviles */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.75rem; /* 28px */
+  }
 
-a:hover {
-  color: #0056b3;
+  h2 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  p {
+    font-size: 0.875rem; /* 14px */
+  }
 }
 
 @layer components {
