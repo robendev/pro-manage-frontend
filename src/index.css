@@ -57,7 +57,7 @@ p {
   .sidebar-icon {
     @apply relative flex justify-center items-center 
             w-10 h-10 mx-auto cursor-pointer my-2
-            bg-gradient-to-tr from-gray-300 to-gray-400 text-gray-950 shadow-md rounded-lg
+            bg-azul-brillante text-black rounded-lg shadow
             hover:rounded-3xl
             transition-all duration-300 ease-linear;
   }
@@ -65,15 +65,14 @@ p {
   .sidebar-icon-active {
     @apply relative flex justify-center items-center 
             w-10 h-10 mx-auto cursor-pointer my-2
-            bg-gradient-to-tr from-gray-400 to-gray-500 text-gray-950 shadow-md rounded-lg
-            hover:rounded-3xl
+            bg-azul-oscuro text-white rounded-lg shadow 
             transition-all duration-300 ease-linear;
   }
 
   .sidebar-tooltip {
-    @apply absolute w-auto py-0.5 px-4 m-2 min-w-max left-10
-           shadow-md rounded-lg
-           bg-gradient-to-tr from-gray-300 to-gray-400 text-gray-950
+    @apply absolute w-auto py-0.5 px-4 m-1 min-w-max left-10
+           rounded-3xl shadow
+           bg-azul-brillante text-white
            text-xs font-bold
            transition-all duration-300 scale-0 origin-left;
   }

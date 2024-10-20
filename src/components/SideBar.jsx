@@ -7,10 +7,9 @@ const SideBar = ({ logout, userData }) => {
 
         <header className='fixed top-0 left-0 
                            flex flex-col justify-between
-                           bg-gradient-to-tr from-gray-200 to-gray-300
-                           shadow-md rounded-lg
-                           h-screen w-14
-                           py-2'>
+                           bg-white rounded-sm shadow
+                           min-h-screen w-14
+                           sm-500:w-16'>
             <Link to={"/"}>
                 <Logo />
             </Link>

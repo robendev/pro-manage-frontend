@@ -70,8 +70,8 @@ const AuthLayout = () => {
                    p-1 gap-1
                    sm:px-2"
       >
-        <div className="w-16
-                        sm-500:w-20">
+        <div className="w-14
+                        sm-500:w-16">
           <Link to={"/"}>
             <Logo />
           </Link>
@@ -154,7 +154,7 @@ const AuthLayout = () => {
         )}
       </header>
 
-      <main className="w-full max-w-7xl mx-auto 
+      <main className="w-full max-w-7xl mx-auto
                        flex-1 flex flex-col
                        bg-white rounded-sm shadow">
         <Outlet />
