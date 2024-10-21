@@ -34,11 +34,10 @@ const FilterTasks = ({ project, projectId }) => {
     }, groupPriority);
 
     return (
-        <div>
+        <div className="p-1">
             <h2 className="font-bold">Tareas</h2>
             <nav
-                className="flex flex-col sm:flex-row justify-between
-                      shadow-md rounded-lg p-2 mb-2"
+                className="flex flex-col justify-between sm:flex-row mb-4"
             >
                 <div
                     className="gap-2 flex-1
@@ -50,8 +49,7 @@ const FilterTasks = ({ project, projectId }) => {
                         name="priority"
                         value={filter.priority}
                         onChange={handleFilterChange}
-                        className="p-2 outline-none bg-gray-50 
-                                   shadow-md rounded-lg
+                        className="w-full rounded-sm shadow bg-gray-100 py-1 px-4 outline-none
                                    sm:col-span-2"
                     >
                         <option value="" disabled selected>Prioridad</option>
@@ -63,8 +61,7 @@ const FilterTasks = ({ project, projectId }) => {
                         name="status"
                         value={filter.status}
                         onChange={handleFilterChange}
-                        className="p-2 outline-none bg-gray-50 
-                                   shadow-md rounded-lg
+                        className="w-full rounded-sm shadow bg-gray-100 py-1 px-4 outline-none
                                    sm:col-span-2"
                     >
                         <option value="" disabled selected>Estado</option>
@@ -74,9 +71,9 @@ const FilterTasks = ({ project, projectId }) => {
                     </select>
                     <button
                         className="p-2 line-clamp-1
-                             bg-gradient-to-tr from-gray-200 to-gray-300
-                             hover:from-gray-300 hover:to-gray-400
-                             shadow-md rounded-lg
+                             bg-gris-oscuro/75 text-black
+                             hover:from-gray-300 hover:to-gray-400 
+                             rounded-3xl shadow tracking-wide
                              sm:row-start-1 sm:col-start-3
                              lg:row-start-1 lg:row-span-2"
                         onClick={() => setFilter({ priority: '', status: '' })}
@@ -84,10 +81,9 @@ const FilterTasks = ({ project, projectId }) => {
                         <i className="fa-solid fa-filter-circle-xmark mr-1"></i>Eliminar
                     </button>
                     <button
-                        className="p-2
-                             bg-gradient-to-tr from-gray-200 to-gray-300
-                             hover:from-gray-300 hover:to-gray-400
-                             shadow-md rounded-lg
+                        className="p-2 line-clamp-1
+                             bg-azul-brillante text-black hover:bg-opacity-90
+                             rounded-3xl shadow tracking-wide
                              sm:row-start-2 sm:col-start-3
                              lg:col-start-4 lg:row-start-1 lg:row-span-2"
                     >
@@ -97,30 +93,25 @@ const FilterTasks = ({ project, projectId }) => {
             </nav>
 
             <div
-                className="grid justify-items-center grid-cols-1 
+                className="grid justify-items-center grid-cols-1 gap-2
                            md:grid-cols-2 
                            lg:grid-cols-3 lg:max-h-[728px] lg:overflow-y-auto"
             >
                 {Object.entries(groupedTasks).map(([priority, tasks]) => (
                     <div
                         key={priority}
-                        className="w-full max-w-80 p-2
-                                   rounded-lg"
+                        className="w-full max-w-96 rounded-sm p-1 border"
                     >
                         <h3
-                            className={`capitalize
-                            text-lg text-center 
+                            className={`text-center 
                             ${priorityStyles[priority]}
-                            rounded-lg
-                            py-1`}
+                            rounded-sm p-2`}
                         >
                             {priorityTranslations[priority]}
                         </h3>
                         <ul className="mt-2 space-y-2">
                             {tasks.length === 0 ? (
-                                <li className="text-gray-950 text-center text-sm font-bold">
-                                    No hay Tareas
-                                </li>
+                                <li className="text-gris-oscuro text-center font-bold">No hay Tareas</li>
                             ) : (
                                 tasks.map((task) => <TaskCard key={task._id} task={task} />)
                             )}

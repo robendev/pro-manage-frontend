@@ -103,7 +103,7 @@ const RegisterView = () => {
         />
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-azul-brillante to-azul-oscuro rounded-3xl text-white font-bold py-1 px-2 tracking-wide"
+          className="w-full bg-azul-brillante rounded-3xl text-white font-bold py-1 px-2 tracking-wide"
         >
           Registrarse
         </button>

@@ -76,13 +76,10 @@ const CollaboratorsSection = ({
     }
 
     return (
-        <>
-            <div
-                className="mb-4 flex flex-col
-                        sm:flex-row sm:items-center sm:gap-4"
-            >
+        <div className="p-1 space-y-2">
+            <div>
                 <h2 className="font-bold">Colaboradores</h2>
-                <div className="relative w-80 max-w-[98%]">
+                <div className="relative max-w-xs">
                     {
                         isProjectCreator && (
                             <>
@@ -91,10 +88,7 @@ const CollaboratorsSection = ({
                                     name=""
                                     id=""
                                     placeholder="Añadir colaborador"
-                                    className="shadow-md rounded-lg
-                          bg-gray-50 outline-none
-                          pl-4 py-1
-                          w-full"
+                                    className="w-full rounded-3xl shadow bg-gray-100 py-1 px-4 outline-none"
                                     value={searchQuery}
                                     onChange={(event) => setSearchQuery(event.target.value)}
                                 />
@@ -107,9 +101,9 @@ const CollaboratorsSection = ({
                         <div
                             className="absolute w-full
                              flex justify-between items-center
-                             px-4 py-4 mt-0.5
-                             rounded-lg text-white
-                             bg-gradient-to-tr from-gray-700 to-gray-800"
+                             rounded-sm text-white
+                             bg-gradient-to-r from-azul-brillante to-azul-oscuro
+                             p-4 mt-1"
                         >
                             <span>{searchResult.email}</span>
                             <button type="button" onClick={handleClickAddCollaborator}>
@@ -119,20 +113,20 @@ const CollaboratorsSection = ({
                     )}
                 </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-2 ">
+            <div className="flex flex-wrap gap-2">
                 {
                     project.collaborators.length === 0 ?
-                        (<span className="text-gray-400">Aún no hay colaboradores asignados.</span>) :
+                        (<span className="text-gris-oscuro/75">Aún no hay colaboradores asignados.</span>) :
                         (project.collaborators.map((collaborator) => (
-                            <CollaboratorCard key={collaborator._id} 
-                                              collaborator={collaborator} 
-                                              projectId={projectId} 
-                                              userData={userData}
-                                              project={project} />
+                            <CollaboratorCard key={collaborator._id}
+                                collaborator={collaborator}
+                                projectId={projectId}
+                                userData={userData}
+                                project={project} />
                         )))
                 }
             </div>
-        </>
+        </div>
     )
 }
 

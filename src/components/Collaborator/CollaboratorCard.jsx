@@ -32,20 +32,15 @@ const CollaboratorCard = ({ collaborator, projectId, userData, project }) => {
         }
     }
     return (
-        <div className="p-2
-                        flex flex-col justify-between
-                        space-y-1 
-                        bg-gradient-to-tr from-gray-100 to-gray-200 
-                        shadow-md shadow-gray-400 rounded-lg 
-                        w-56 h-14
-                        hover:from-white hover:to-gray-100"
+        <div className="flex flex-col justify-between rounded-sm shadow bg-gray-100
+                        space-y-1 py-1 px-2 w-full max-w-max h-14"
             onMouseEnter={() => setShowEmail(true)}
             onMouseLeave={() => setShowEmail(false)}>
-            <div className="flex justify-between items-center">
-                <p className="text-xs text-gray-400 font-bold"><i className="fas fa-hashtag"></i>{collaborator._id}</p>
+            <div className="flex justify-between items-center gap-2">
+                <p className="text-gris-oscuro/75"><i className="fas fa-hashtag"></i>{collaborator._id}</p>
                 {
                     isProjectCreator && (
-                        <button className="text-xs text-red-500"
+                        <button className="text-red-500"
                             onClick={handleClickremoveCollaboratorById}>
                             <i class="fa-solid fa-user-xmark"></i>
                         </button>

@@ -7,10 +7,10 @@ const AppLayout = () => {
 
   return (
     <>
-      <SideBar logout={ logout } userData={data} />
+      <SideBar logout={logout} userData={data} />
 
-      <main className="w-[calc(100%-3.5rem)] sm:w-[calc(100%-4rem)] max-w-7xl mx-auto ml-14 sm-500:ml-16
-                       flex-1 flex flex-col
+      <main className="ml-14 sm-500:ml-16 w-[calc(100%-3.5rem)] sm:w-[calc(100%-4rem)] max-w-7xl 2xl:mx-auto
+                       flex-1 flex flex-col justify-center
                        bg-white rounded-sm shadow">
         {
           isError ? (<Navigate to={"/"} />) : (data && <Outlet context={{ userData: data }} />)

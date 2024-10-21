@@ -38,27 +38,21 @@ const ProjectView = () => {
   if (project)
     return (
       <div
-        className="px-4 py-4 md:py-8
-                    space-y-4
-                    bg-gradient-to-tr from-gray-100 to-gray-200
-                    shadow-md shadow-gray-400 rounded-lg
-                    flex-1 flex flex-col
-                    w-full max-w-5xl mx-auto"
+        className="flex-1 min-h-screen flex flex-col p-1 gap-1
+                   sm-500:p-2 sm-500:gap-2
+                   md:p-4 md:gap-4"
       >
         <div>
-          <p className="text-sm text-gray-400 font-bold">
-            <i className="fas fa-hashtag"></i>
-            {project._id}
-          </p>
+          <p className="text-gris-oscuro/75"><i className="fas fa-hashtag"></i>{project._id}</p>
           <h1 className="text-center font-bold line-clamp-1">
             {project.projectName}
           </h1>
-          <div className="flex justify-around *:text-xs *:md:text-base *:xl:text-lg *:font-light">
+          <div className="flex justify-around items-center *:text-xs">
             <p className="font-semibold">
               Prioridad{" "}
               <span
                 className={`${priorityStyles[project.priority]
-                  } px-4 p-1 rounded-md`}
+                  } py-1 px-4 rounded-3xl`}
               >
                 {priorityTranslations[project.priority]}
               </span>
@@ -67,7 +61,7 @@ const ProjectView = () => {
               Estado{" "}
               <span
                 className={`${statusStyles[project.status]
-                  } px-4 p-1 rounded-md`}
+                  } py-1 px-4 rounded-3xl`}
               >
                 {statusTranslations[project.status]}
               </span>
@@ -75,39 +69,22 @@ const ProjectView = () => {
           </div>
         </div>
 
-        <div>
+        <div className="p-1">
           <h2 className="font-bold">Descripción</h2>
-          <p
-            className="text-sm
-                      md:text-base
-                      xl:text-lg"
-          >
-            {project.projectDescription}
-          </p>
+          <p>{project.projectDescription}</p>
         </div>
 
-        <div>
+        <div className="p-1">
           <h2 className="font-bold">Detalles del Proyecto</h2>
-          <p className="text-sm md:text-base xl:text-lg">
-            <i className="fas fa-user w-5"></i> {" "}
-            Creado por: <span>{project.createdBy.email}</span>
+          <p><i className="fas fa-user w-5"></i>Creado por: <span>{project.createdBy.email}</span>
             {isProjectCreator && <i className="fas fa-crown text-yellow-500 ml-1"></i>}
           </p>
 
-          <p className="text-sm md:text-base xl:text-lg">
-            <i className="fas fa-calendar-alt w-5"></i> Fecha de Creación:{" "}
-            <span>{formatDate(project.createdAt)}</span>
-          </p>
-          <p className="text-sm md:text-base xl:text-lg">
-            <i className="fas fa-calendar-check w-5"></i> Fecha de inicio:{" "}
-            <span>{formatDate(project.startDate)}</span>
-          </p>
-          <p className="text-sm md:text-base xl:text-lg">
-            <i className="fas fa-calendar-times w-5"></i> Fecha de Finalización:{" "}
-            <span>{formatDate(project.endDate)}</span>
-          </p>
+          <p><i className="fas fa-calendar-alt w-5"></i>Fecha de Creación:<span>{formatDate(project.createdAt)}</span></p>
+          <p><i className="fas fa-calendar-check w-5"></i>Fecha de inicio:<span>{formatDate(project.startDate)}</span></p>
+          <p><i className="fas fa-calendar-times w-5"></i>Fecha de Finalización:<span>{formatDate(project.endDate)}</span></p>
         </div>
-
+        
         <CollaboratorsSection userData={userData} project={project} projectId={projectId}
           searchQuery={searchQuery} setSearchQuery={setSearchQuery}
           searchResult={searchResult} setSearchResult={setSearchResult}
@@ -119,7 +96,7 @@ const ProjectView = () => {
           <h2 className="font-bold">Notas</h2>
           <ul className="list-disc pl-5">
             {project.notes.map((note, index) => (
-              <li key={index} className="text-sm">
+              <li key={index}>
                 {note}
               </li>
             ))}
